@@ -1,5 +1,6 @@
 package application;
-	
+
+import controller.LoginController;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -19,8 +20,9 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public static void main(String[] args) {
-		launch(args);
+		//launch(args);
+		Application.launch(LoginController.class, args);
 	}
 }
