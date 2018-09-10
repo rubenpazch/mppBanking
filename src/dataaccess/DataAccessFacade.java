@@ -22,24 +22,24 @@ import java.util.List;
  */
 public class DataAccessFacade implements DataAccess {
 
-    
+
     enum StorageType{BOOKS, MEMBERS,USERS;}
-    
-    public static final String OUTPUT_DIR = System.getProperty("user.dir")+ "\\src\\dataaccess.storage";
+
+    public static final String OUTPUT_DIR = System.getProperty("user.dir")+ "\\src\\dataaccess\\storage";
     public static final String DATE_PATTERN="MM/dd/yyyy";
-    
+
     @Override
-    public HashMap<String, User> readUserMap() {    
+    public HashMap<String, User> readUserMap() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        return (HashMap<String, User>)readFromStorage(StorageType.USERS);    
+        return (HashMap<String, User>)readFromStorage(StorageType.USERS);
     }
-    
+
     static void loadUserMap(List<User> userList) {
 		HashMap<String, User> users = new HashMap<String, User>();
 		userList.forEach(user -> users.put(user.getId(), user));
 		saveToStorage(StorageType.USERS, users);
     }
-    
+
     static Object readFromStorage(StorageType type) {
 		ObjectInputStream in = null;
 		Object retVal = null;
@@ -58,7 +58,7 @@ public class DataAccessFacade implements DataAccess {
 		}
 		return retVal;
 	}
-    
+
     static void saveToStorage(StorageType type, Object ob) {
 		ObjectOutputStream out = null;
 		try {
@@ -104,5 +104,5 @@ public class DataAccessFacade implements DataAccess {
 		}
 		private static final long serialVersionUID = 5399827794066637059L;
 	}
-    
+
 }

@@ -12,6 +12,6 @@ import java.io.Serializable;
  * @author USER
  */
 public enum Auth implements Serializable {
-	LIBRARIAN, ADMIN, BOTH;
+	BUSINESS, ADMIN, CUSTOMER;
 }
 

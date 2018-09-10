@@ -19,15 +19,15 @@ public class TestData {
     @SuppressWarnings("serial")
     List<User> allUsers = new ArrayList<User>() {
         {
-            add(new User("101", "xyz", Auth.LIBRARIAN));
+            add(new User("101", "xyz", Auth.BUSINESS));
             add(new User("102", "abc", Auth.ADMIN));
-            add(new User("103", "111", Auth.BOTH));
+            add(new User("103", "111", Auth.CUSTOMER));
         }
     };
     public void userData() {
-	DataAccessFacade.loadUserMap(allUsers);
+    	DataAccessFacade.loadUserMap(allUsers);
     }
-    
+
     public static void main(String[] args) {
         TestData td = new TestData();
         //td.bookData();
