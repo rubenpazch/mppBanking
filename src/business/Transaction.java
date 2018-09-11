@@ -5,10 +5,43 @@
  */
 package business;
 
+import java.util.Date;
+
 /**
  *
  * @author USER
  */
 public abstract class Transaction {
-    public abstract double getAmountTransaction();
+	private String transactionId;
+	private Date transactionDate;
+	private TransactionStatus status;
+	
+	private Account account;
+	
+	Transaction(String transactionId, Account account, Date transactionDate, TransactionStatus status) {
+		this.transactionId = transactionId;
+		this.account = account;
+		this.transactionDate = transactionDate;
+		this.status = status;
+	}
+	
+	Transaction(String transactionId, Account account, Date transactionDate) {
+		this(transactionId, account, transactionDate, TransactionStatus.PENDING);
+	}
+	
+	public String getTransactionId() {
+		return transactionId;
+	}
+
+	public Date getTransactionDate() {
+		return transactionDate;
+	}
+
+	public TransactionStatus getStatus() {
+		return status;
+	}
+	
+	public void setStatus(TransactionStatus newStatus) {
+		status = newStatus;
+	}
 }
