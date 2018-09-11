@@ -10,7 +10,6 @@
   <children>
     <GridPane layoutX="18.0" layoutY="132.0" prefWidth="279.0">
       <children>
-        <Button fx:id="btLogin" mnemonicParsing="false" text="Login" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <Label text="Password" GridPane.columnIndex="0" GridPane.rowIndex="1" />
         <Label text="User" GridPane.columnIndex="0" GridPane.rowIndex="0" />
         <TextField fx:id="txtUser" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
@@ -28,5 +27,6 @@
       </rowConstraints>
     </GridPane>
     <Label layoutX="111.0" layoutY="78.0" text="Banking System" />
+    <Button fx:id="btLogin" layoutX="111.0" layoutY="222.0" mnemonicParsing="false" text="Login" />
   </children>
 </AnchorPane>
