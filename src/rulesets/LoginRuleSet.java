@@ -17,7 +17,7 @@ public class LoginRuleSet implements RuleSet {
 		// TODO Auto-generated method stub
 		login = (LoginController) ap;
 		isEmptyFieldsRule();
-		isPasswordNumericRule();
+	//	isPasswordNumericRule();
 		authenticationUserRule();
 
 	}
@@ -40,12 +40,12 @@ public class LoginRuleSet implements RuleSet {
 			throw new RuleException("User id or password Wrong");
 		}
 	}	
-	private void isPasswordNumericRule() throws RuleException {
+	/*private void isPasswordNumericRule() throws RuleException {
 		char[] range_array = login.getPassword().getText().trim().toCharArray();
 		for (int i = 0; i < range_array.length; i++) {
 			if (!Character.isDigit(range_array[i])) {
 				throw new RuleException("The password must be numeric !");
 			}
 		}
-	}
+	}*/
 }
