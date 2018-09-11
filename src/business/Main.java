@@ -13,18 +13,26 @@ import java.util.List;
  * @author USER
  */
 public class Main {
-    
+
     public static void main(){
         List<Account> accounts = new ArrayList<>();
-        
+
         Account acct1= new CheckingAccount("Acct1",4,100);
         Account acct2= new CheckingAccount("Acct2",8,200);
         Account acct3= new CheckingAccount("Acct3",10,300);
-        
+
         Account acct4= new SavingsAccount("Acct4",4,600);
         Account acct5= new SavingsAccount("Acct5",8,700);
         Account acct6= new SavingsAccount("Acct6",10,800);
-        
+
+        accounts.add(acct1);
+        accounts.add(acct2);
+        accounts.add(acct3);
+        accounts.add(acct4);
+        accounts.add(acct5);
+        accounts.add(acct6);
+
+
     }
-    
+
 }
