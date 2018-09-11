@@ -11,15 +11,15 @@ import java.util.Date;
  *
  * @author USER
  */
-public class Deposit extends Transaction {
+public class Withdrawal extends Transaction {
     private double amount;
     
-    Deposit(String transactionId, Account account, double amount, Date transactionDate, TransactionStatus status) {
+    Withdrawal(String transactionId, Account account, double amount, Date transactionDate, TransactionStatus status) {
     	super(transactionId, account, transactionDate, status);
     	this.amount = amount;
     }
     
-    Deposit(String transactionId, Account account, double amount, Date transactionDate) {
+    Withdrawal(String transactionId, Account account, double amount, Date transactionDate) {
     	this(transactionId, account, amount, transactionDate, TransactionStatus.PENDING);
     }
     
