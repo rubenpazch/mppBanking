@@ -32,6 +32,8 @@ public class DataAccessFacade implements DataAccess {
     public HashMap<String, User> readUserMap() {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         return (HashMap<String, User>)readFromStorage(StorageType.USERS);
+
+
     }
 
     static void loadUserMap(List<User> userList) {

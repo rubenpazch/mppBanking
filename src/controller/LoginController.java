@@ -30,7 +30,7 @@ public class LoginController extends Application {
 		this.primaryStage = stage;
 		Parent root = FXMLLoader.load(getClass().getResource("/ui/login.fxml"));
 
-		stage.setTitle("Welcome MUM Library");
+		stage.setTitle("Welcome MUM Banking");
 		stage.setScene(new Scene(root));
 
 		TextField userId = (TextField) root.lookup("#txtUser");
