@@ -6,6 +6,8 @@
 package business;
 
 import java.io.Serializable;
+import business.RuleException;
+
 
 /**
  *
@@ -39,11 +41,9 @@ public class User implements Serializable {
 		return "[" + id + ":" + password + ", " + authorization.toString() + "]";
 	}
 
-	//new mothods
+	//new methods
 	public boolean authenticate(String id, String Password) {
 		return this.id.equals(id) && this.password.equals(password);
 
 	}
-
-
 }
