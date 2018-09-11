@@ -16,7 +16,7 @@ import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
 import business.User;
 import util.Util;
-
+import dataaccess.*;
 
 public class LoginController extends Application {
 
@@ -38,9 +38,9 @@ public class LoginController extends Application {
 		Button button = (Button) root.lookup("#btLogin");
 
 		button.setOnAction((event) -> {
-			DataAccess db = new DataAccessFacade();
-			HashMap<String, User> users = db.readUserMap();
-			User user = users.get(userId.getText());
+			
+			User user = UserDAO.GetUser(userId.getText());
+			
 			if(user!=null)
 			{
 				if (user.authenticate(userId.getText(), txtPassword.getText()) ) {

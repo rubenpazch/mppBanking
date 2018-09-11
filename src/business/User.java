@@ -19,6 +19,8 @@ public class User implements Serializable {
 	private String password;
 	private Auth authorization;
 
+	public User() {};
+	
 	public User(String id, String pass, Auth  auth) {
 		this.id = id;
 		this.password = pass;
@@ -43,6 +45,16 @@ public class User implements Serializable {
 	public boolean authenticate(String id, String Password) {
 		return this.id.equals(id) && this.password.equals(password);
 
+	}
+
+	public void setId(String Id) {
+		// TODO Auto-generated method stub
+		this.id = Id;
+	}
+
+	public void setPass(String password) {
+		// TODO Auto-generated method stub
+		this.password = password;
 	}
 
 

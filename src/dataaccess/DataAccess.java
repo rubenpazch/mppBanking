@@ -13,5 +13,9 @@ import java.util.HashMap;
  * @author USER
  */
 public interface DataAccess {
-    public HashMap<String,User> readUserMap();
+    public boolean Insert(Object obj);
+    public boolean Delete(Object obj);
+    public boolean Update(Object obj);
+    public Object GetRecord(Object obj);
+    
 }
