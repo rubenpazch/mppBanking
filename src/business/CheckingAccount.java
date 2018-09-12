@@ -10,31 +10,19 @@ package business;
  * @author USER
  */
 public class CheckingAccount  extends Account{
-	private double balance;
 	private double monthyFee;
-	private String acctId;
 	
-	public CheckingAccount (String oacctId, double fee, double startBalance){
-		this.acctId= oacctId;
-		this.monthyFee = fee;
-		this.balance = startBalance;
+	public CheckingAccount (String accountId, Contact contact, double monthlyFee, double startBalance){
+		super(accountId, contact, startBalance);
+		this.monthyFee = monthlyFee;
 	}
-
-	@Override
-	public String getAccountID() {
-		// TODO Auto-generated method stub
-		return acctId;
+	
+	public double getMonthlyFee() {
+		return monthyFee;
 	}
-
-	@Override
-	public double getBalance() {
-		// TODO Auto-generated method stub
-		return balance;
-	}
-
+	
 	@Override
 	public double computeUpdatedBalance() {
-		// TODO Auto-generated method stub
-		return balance-monthyFee;
+		return getBalance() - monthyFee;
 	}
 }
