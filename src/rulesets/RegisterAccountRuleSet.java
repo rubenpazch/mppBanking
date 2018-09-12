@@ -21,7 +21,8 @@ public class RegisterAccountRuleSet implements RuleSet {
 		if(register.getTxtAccountNumber().getText()== null || register.getTxtInitialAmount().getText()==null  || 
 				register.getTxtInterestRate().getText()==null||register.getTxtMonthlyFee().getText()==null||
 				register.getTxtAccountNumber().getText().isEmpty() || register.getTxtInitialAmount().getText().isEmpty() || 
-				register.getTxtInterestRate().getText().isEmpty()||register.getTxtMonthlyFee().getText().isEmpty()) {
+				register.getTxtInterestRate().getText().isEmpty()||register.getTxtMonthlyFee().getText().isEmpty() ||
+				register.getComboBoxType().getSelectionModel().isEmpty()) {
 			throw new RuleException("All fields must be filled");
 		}
 	}
