@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class CustomerController extends Application{
@@ -22,6 +23,11 @@ public class CustomerController extends Application{
 		Button btnSaveCustomer = (Button) root.lookup("#btnSaveCustomer");
 
 
+		TextField txtId = (TextField) root.lookup("#txtId");;
+		TextField txtFirstName = (TextField) root.lookup("#txtFirstName");;
+		TextField txtMidleName = (TextField) root.lookup("#txtMidleName");;
+		TextField txtLastName = (TextField) root.lookup("#txtLastName");;
+		TextField txtAddress = (TextField) root.lookup("#txtAddress");;
 
 
 		btnSaveCustomer.setOnAction((event) -> {
