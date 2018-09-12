@@ -3,6 +3,7 @@ package rulesets;
 import java.util.HashMap;
 
 import controller.LoginController;
+import controller.RegisterAccountController;
 import javafx.application.Application;
 
 
@@ -12,7 +13,7 @@ final public class RuleSetFactory {
 	
 	static {
 		map.put(LoginController.class, new LoginRuleSet());
-		//map.put(CDWindow.class, new CDRuleSet());
+		map.put(RegisterAccountController.class, new RegisterAccountRuleSet());
 	}
 	
 	

@@ -29,16 +29,27 @@ public class MainMenuController {
 	public void start(Stage stage) throws Exception {
 
 		Parent root = FXMLLoader.load(getClass().getResource("/ui/main.fxml"));
+		//FXMLLoader loader= new FXMLLoader(getClass().getResource("/ui/main.fxml"));
 		stage.setTitle("FXML");
 
-		Button btnCheckoutBooks = (Button) root.lookup("#btnCheckoutBooks");
-		Button btnBooks = (Button) root.lookup("#btnBooks");
-		Button btnLibraryMembers = (Button) root.lookup("#btnLibraryMembers");
-		Button btnMembersRecords = (Button) root.lookup("#btnMembersRecords");
+		Button btnRegisterTransaction = (Button) root.lookup("#btnRegisterTransaction");
+		Button btnRegisterAccount = (Button) root.lookup("#btnRegisterAccount");
+		Button btnRegisterCustomer = (Button) root.lookup("#btnRegisterCustomer");
 		Button btnSignOut = (Button) root.lookup("#btSignOut");
 
 		stage.setScene(new Scene(root));
 
+		btnRegisterAccount.setOnAction((event) -> {
+			//RegisterAccountController register =  loader.<RegisterAccountController>getController();
+			RegisterAccountController register =  new RegisterAccountController(user);
+		  //  register.initData(user);
+			try {
+				register.start(stage);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
 		btnSignOut.setOnAction((event) -> {
 			LoginController login = new LoginController();
 			try {
@@ -48,6 +59,8 @@ public class MainMenuController {
 				e.printStackTrace();
 			}
 		});
+		
+		
 
 		// TODO Auto-generated method stub
 		/*btnCheckoutBooks.setOnAction((event) -> {
@@ -104,6 +117,10 @@ public class MainMenuController {
 			}
 		});
 		stage.show();*/
+	}
+
+	 User getUser(User u) {
+		return user=u;
 	}
 
 

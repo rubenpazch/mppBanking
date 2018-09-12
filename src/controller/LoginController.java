@@ -31,7 +31,8 @@ public class LoginController extends Application {
 		// TODO Auto-generated method stub
 		this.primaryStage = stage;
 		Parent root = FXMLLoader.load(getClass().getResource("/ui/login.fxml"));
-
+		//FXMLLoader loader= new FXMLLoader(getClass().getResource("/ui/main.fxml"));
+		
 		stage.setTitle("Welcome Bank System");
 		stage.setScene(new Scene(root));
 
@@ -47,6 +48,7 @@ public class LoginController extends Application {
 				HashMap<String, User> users = db.readUserMap();
 				User user = users.get(getUserId().getText());
 				MainMenuController secondWindow = new MainMenuController(user);
+			//	secondWindow.getUser(user);
 				secondWindow.start(this.primaryStage);
 				
 			} catch (RuleException e1) {
