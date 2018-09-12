@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.application.Application;
 //import controller.BookController;
 //import control.CheckEntriesMemberController;
 //import control.CheckoutController;
@@ -14,19 +15,22 @@ import business.Auth;
 import business.User;
 import util.Util;
 
-public class MainMenuController {
+public class MainMenuController extends Application{
 
-	public static void main(String[] args) {
-		//Application.launch(MainMenuController.class, args);
-	}
-
+	private Stage primaryStage;
 	private User user;
 
-	public MainMenuController(User user) {
-		this.user = user;
+	public static void main(String[] args) {
+		Application.launch(MainMenuController.class, args);
 	}
 
+/*	public MainMenuController(User user) {
+		this.user = user;
+	}*/
+
 	public void start(Stage stage) throws Exception {
+
+		this.primaryStage = stage;
 
 		Parent root = FXMLLoader.load(getClass().getResource("/ui/main.fxml"));
 		//FXMLLoader loader= new FXMLLoader(getClass().getResource("/ui/main.fxml"));
@@ -51,72 +55,50 @@ public class MainMenuController {
 			}
 		});
 		btnSignOut.setOnAction((event) -> {
-			LoginController login = new LoginController();
 			try {
+				LoginController login = new LoginController();
 				login.start(stage);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
 		
 		
 
-		// TODO Auto-generated method stub
-		/*btnCheckoutBooks.setOnAction((event) -> {
-			if (user.getAuthorization().equals(Auth.ADMIN)) {
-				Util.showAlert("Administrator can not checkout books", "Permission denied", AlertType.ERROR);
-				return;
-			}
-
-			//CheckoutController checkoutcontroller = new CheckoutController(this.user);
+		btnRegisterCustomer.setOnAction((event) -> {
 
 			try {
-			//	checkoutcontroller.start(stage);
+				CustomerController customerController = new CustomerController();
+				customerController.start(stage);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+
+
+
+		btnRegisterAccount.setOnAction((event) -> {
+			try {
+				AccountController accountController = new AccountController();
+				accountController.start(stage);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+
+
+		btnRegisterTransaction.setOnAction((event) -> {
+			try {
+				TransactionController transactionController = new TransactionController();
+				transactionController.start(stage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
 
-		btnBooks.setOnAction((event) -> {
-			if (user.getAuthorization().equals(Auth.LIBRARIAN)) {
-				Util.showAlert("Librarian cannot add Books", "Permission denied", AlertType.ERROR);
-				return;
-			}
-			//BookController bc = new BookController(user);
-			try {
-			//	bc.start(stage);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
 
-		btnLibraryMembers.setOnAction((event) -> {
-			if (user.getAuthorization().equals(Auth.LIBRARIAN)) {
-				Util.showAlert("Librarian cannot add Member", "Permission denied", AlertType.ERROR);
-				return;
-			}
-			try {
-				LibraryMemberController librarymember = new LibraryMemberController(this.user);
-				librarymember.start(stage);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
-
-		btnMembersRecords.setOnAction((event) -> {
-		//	CheckEntriesMemberController recordsentries = new CheckEntriesMemberController(this.user);
-			try {
-				//recordsentries.start(stage);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
-		stage.show();*/
+		stage.show();
 	}
 
 	 User getUser(User u) {

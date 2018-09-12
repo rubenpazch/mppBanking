@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<<<<<<< HEAD
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 	<!-- TODO Add Nodes -->
 	<children>
@@ -39,4 +40,37 @@
    </children>
 		</Pane>
 	</children>
+=======
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+  <!-- TODO Add Nodes -->
+  <children>
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="331.0" prefWidth="403.0">
+      <children>
+        <TextField layoutX="141.0" layoutY="80.0" prefWidth="200.0" text="123567125234234" />
+        <Label layoutX="36.0" layoutY="83.0" text="Account Number" />
+        <ComboBox layoutX="141.0" layoutY="113.0" prefHeight="21.0" prefWidth="200.0">
+          <items>
+            <FXCollections fx:factory="observableArrayList">
+              <String fx:value="Item 1" />
+              <String fx:value="Item 2" />
+              <String fx:value="Item 3" />
+            </FXCollections>
+          </items>
+        </ComboBox>
+        <Label layoutX="36.0" layoutY="118.0" text="Type" />
+        <TextField disable="true" layoutX="141.0" layoutY="48.0" prefWidth="200.0" text="Jhon Smith" />
+        <Label layoutX="36.0" layoutY="48.0" text="Customer" />
+        <TextField layoutX="141.0" layoutY="144.0" prefWidth="200.0" text="" />
+        <Label layoutX="36.0" layoutY="147.0" text="Initial Amount" />
+        <TextField layoutX="141.0" layoutY="178.0" prefWidth="200.0" text="" />
+        <Label layoutX="36.0" layoutY="181.0" text="Interest Rate" />
+        <TextField layoutX="141.0" layoutY="214.0" prefWidth="200.0" text="" />
+        <Label layoutX="36.0" layoutY="217.0" text="Monthly Fee" />
+        <Button fx:id="btnSaveAccount" layoutX="141.0" layoutY="255.0" mnemonicParsing="false" text="Save" />
+        <Button fx:id="btnReturnMainRegisterAccount" layoutX="220.0" layoutY="256.0" mnemonicParsing="false" text="Back Main" />
+        <Label layoutX="141.0" layoutY="14.0" text="REGISTER ACCOUNT" />
+      </children>
+    </Pane>
+  </children>
+>>>>>>> branch 'master' of https://github.com/rubenpazch/mppBanking.git
 </AnchorPane>
