@@ -23,14 +23,17 @@
           </items>
         </ComboBox>
         <Label layoutX="36.0" layoutY="118.0" text="Type" />
-        <TextField disable="true" layoutX="141.0" layoutY="43.0" prefWidth="200.0" text="Jhon Smith" />
-        <Label layoutX="36.0" layoutY="46.0" text="Customer" />
+        <TextField disable="true" layoutX="141.0" layoutY="48.0" prefWidth="200.0" text="Jhon Smith" />
+        <Label layoutX="36.0" layoutY="48.0" text="Customer" />
         <TextField layoutX="141.0" layoutY="144.0" prefWidth="200.0" text="" />
         <Label layoutX="36.0" layoutY="147.0" text="Initial Amount" />
         <TextField layoutX="141.0" layoutY="178.0" prefWidth="200.0" text="" />
         <Label layoutX="36.0" layoutY="181.0" text="Interest Rate" />
-        <TextField layoutX="141.0" layoutY="209.0" prefWidth="200.0" text="" />
-        <Label layoutX="36.0" layoutY="212.0" text="Monthly Fee" />
+        <TextField layoutX="141.0" layoutY="214.0" prefWidth="200.0" text="" />
+        <Label layoutX="36.0" layoutY="217.0" text="Monthly Fee" />
+        <Button fx:id="btnSaveAccount" layoutX="141.0" layoutY="255.0" mnemonicParsing="false" text="Save" />
+        <Button fx:id="btnReturnMainRegisterAccount" layoutX="220.0" layoutY="256.0" mnemonicParsing="false" text="Back Main" />
+        <Label layoutX="141.0" layoutY="14.0" text="REGISTER ACCOUNT" />
       </children>
     </Pane>
   </children>

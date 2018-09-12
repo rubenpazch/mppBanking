@@ -25,6 +25,7 @@ public class LoginController extends Application {
 	private Stage primaryStage;
 	private TextField userId ;;
 	private TextField password;
+
 	@Override
 	public void start(Stage stage) throws Exception {
 
@@ -37,6 +38,7 @@ public class LoginController extends Application {
 
 		userId = (TextField) root.lookup("#txtUser");
 		password = (TextField) root.lookup("#txtPwd");
+
 		Button button = (Button) root.lookup("#btLogin");
 
 		button.setOnAction((event) -> {
@@ -46,16 +48,16 @@ public class LoginController extends Application {
 				DataAccess db = new DataAccessFacade();
 				HashMap<String, User> users = db.readUserMap();
 				User user = users.get(getUserId().getText());
-				MainMenuController secondWindow = new MainMenuController(user);
-				secondWindow.start(this.primaryStage);
-				
+				//MainMenuController secondWindow = new MainMenuController(user);
+				//secondWindow.start(this.primaryStage);
+
 			} catch (RuleException e1) {
 				Util.showAlert(e1.getMessage(), "Error login", AlertType.ERROR);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 
 		});
 		stage.show();
