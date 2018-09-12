@@ -73,7 +73,6 @@ public class AccountDAO {
 	        }
 	        
 	        int i = ps.executeUpdate();
-			connection.close();
 	        if(i == 1) {
 	        	try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
 	                if (generatedKeys.next()) {
@@ -85,6 +84,7 @@ public class AccountDAO {
 	            }
 	        	return true;
 	        }
+	        connection.close();
 	    } catch (SQLException ex) {
 	        ex.printStackTrace();
 	    }
