@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import rulesets.RuleSet;
+import rulesets.RuleSetFactory;
 import business.Auth;
 import business.User;
 import util.Util;
@@ -24,9 +26,9 @@ public class MainMenuController extends Application{
 		Application.launch(MainMenuController.class, args);
 	}
 
-/*	public MainMenuController(User user) {
+	public MainMenuController(User user) {
 		this.user = user;
-	}*/
+	}
 
 	public void start(Stage stage) throws Exception {
 
@@ -43,11 +45,10 @@ public class MainMenuController extends Application{
 
 		stage.setScene(new Scene(root));
 
-		btnRegisterAccount.setOnAction((event) -> {
-			//RegisterAccountController register =  loader.<RegisterAccountController>getController();
-			RegisterAccountController register =  new RegisterAccountController(user);
-		  //  register.initData(user);
+		btnRegisterAccount.setOnAction((event) -> {			
+
 			try {
+				RegisterAccountController register =  new RegisterAccountController(user);
 				register.start(stage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -68,28 +69,16 @@ public class MainMenuController extends Application{
 		btnRegisterCustomer.setOnAction((event) -> {
 
 			try {
-				CustomerController customerController = new CustomerController();
+				RegisterCustomerController customerController = new RegisterCustomerController();
 				customerController.start(stage);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});
 
-
-
-		btnRegisterAccount.setOnAction((event) -> {
-			try {
-				AccountController accountController = new AccountController();
-				accountController.start(stage);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-
-
 		btnRegisterTransaction.setOnAction((event) -> {
 			try {
-				TransactionController transactionController = new TransactionController();
+				RegisterTransactionController transactionController = new RegisterTransactionController();
 				transactionController.start(stage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

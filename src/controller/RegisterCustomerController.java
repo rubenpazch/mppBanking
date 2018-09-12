@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class CustomerController extends Application{
+public class RegisterCustomerController extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -38,8 +38,8 @@ public class CustomerController extends Application{
 
 		btReturnMainRegisterCustomer.setOnAction((event) -> {
 			try {
-				MainMenuController mainMenuController = new MainMenuController();
-				mainMenuController.start(primaryStage);
+			//	MainMenuController mainMenuController = new MainMenuController();
+			//	mainMenuController.start(primaryStage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

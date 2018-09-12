@@ -1,10 +1,6 @@
 package controller;
 
-import java.util.HashMap;
-
 import business.User;
-import dataaccess.DataAccess;
-import dataaccess.DataAccessFacade;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,7 +15,7 @@ import rulesets.RuleSet;
 import rulesets.RuleSetFactory;
 import util.Util;
 
-public class RegisterAccountController extends Application {
+public class RegisterAccountController  extends Application{
 
 	private User user;
 	private Stage primaryStage;
@@ -31,14 +27,14 @@ public class RegisterAccountController extends Application {
 	private TextField txtMonthlyFee;
 	private Button btnRegister;
 	private Button btnBackMenu;
-	
-	
+
+
 	public RegisterAccountController(User user) {
 		this.user=user;
 	}
 	@SuppressWarnings("unchecked")
 	@Override
-	
+
 	public void start(Stage stage) throws Exception {
 
 		// TODO Auto-generated method stub
@@ -56,26 +52,47 @@ public class RegisterAccountController extends Application {
 		txtMonthlyFee = (TextField) root.lookup("#txtMonthlyFee");
 		Button btnRegister = (Button) root.lookup("#btnRegister");
 		Button btnBackMenu = (Button) root.lookup("#btnBackMenu");
-		
+
 		txtCustomer.setText(user.getId());
-		
+
 
 		btnRegister.setOnAction((event) -> {
 			RuleSet rules = RuleSetFactory.getRuleSet(RegisterAccountController.this);
 			try {
 				rules.applyRules(RegisterAccountController.this);
-				
-				
+
+
+				//------------------------------------
+				//CONNECT WITH THE LOGIC OF BUSINESS/*
+				//------------------------------------
+
+				MainMenuController mainMenuController = new MainMenuController(user);
+				mainMenuController.start(primaryStage);
+
+
 			} catch (RuleException e1) {
 				Util.showAlert(e1.getMessage(), "Error login", AlertType.ERROR);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			} 
 
 		});
 		stage.show();
+
+		btnBackMenu.setOnAction((event) -> {
+
+			MainMenuController mainMenuController = new MainMenuController(user);
+			try {
+				mainMenuController.start(primaryStage);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		});
+		stage.show();
 	}
 
-	
-	
 	public TextField getTxtAccountNumber() {
 		return txtAccountNumber;
 	}
@@ -91,4 +108,5 @@ public class RegisterAccountController extends Application {
 	public static void main(String[] args) {
 		Application.launch(RegisterAccountController.class, args);
 	}
+
 }

@@ -1,28 +1,27 @@
 package controller;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class AccountController  extends Application{
+public class RegisterTransactionController extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
-		Parent root = FXMLLoader.load(getClass().getResource("/ui/RegisterAccount.fxml"));
-		primaryStage.setTitle("Register Account");
+		Parent root = FXMLLoader.load(getClass().getResource("/ui/RegisterTransaction.fxml"));
+		primaryStage.setTitle("Register Transaction");
 		primaryStage.setScene(new Scene(root, 600, 400));
 
-		Button btnReturnMainRegisterAccount = (Button) root.lookup("#btnReturnMainRegisterAccount");
+		Button btnReturnMainRegisterTransaction = (Button) root.lookup("#btnReturnMainRegisterTransaction");
 
-		btnReturnMainRegisterAccount.setOnAction((event) -> {
+		btnReturnMainRegisterTransaction.setOnAction((event) -> {
 			try {
-				MainMenuController mainMenuController = new MainMenuController();
-				mainMenuController.start(primaryStage);
+				//MainMenuController mainMenuController = new MainMenuController();
+				//mainMenuController.start(primaryStage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -30,7 +29,6 @@ public class AccountController  extends Application{
 		});
 
 		primaryStage.show();
-
 	}
 
 }
