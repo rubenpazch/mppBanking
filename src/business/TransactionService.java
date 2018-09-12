@@ -21,17 +21,17 @@ public class TransactionService {
 		return newTransaction;
 	}
 	
-	public Transaction createWithdrawal(Account account, double amount, TransactionStatus status) {
-		Transaction newTransaction = new Withdrawal(generateTransactionId(), account, amount, new Date(), status);
-		account.addTransaction(newTransaction);
-		TransDAO.insert(newTransaction, TransactionType.WITHDRAW);
-		return newTransaction;
-	}
-	
 	public Transaction createDeposit(Account account, double amount, TransactionStatus status) {
 		Transaction newTransaction = new Deposit(generateTransactionId(), account, amount, new Date(), status);
 		account.addTransaction(newTransaction);
 		TransDAO.insert(newTransaction, TransactionType.DEPOSIT);
+		return newTransaction;
+	}
+	
+	public Transaction createWithdrawal(Account account, double amount, TransactionStatus status) {
+		Transaction newTransaction = new Withdrawal(generateTransactionId(), account, amount, new Date(), status);
+		account.addTransaction(newTransaction);
+		TransDAO.insert(newTransaction, TransactionType.WITHDRAW);
 		return newTransaction;
 	}
 	
