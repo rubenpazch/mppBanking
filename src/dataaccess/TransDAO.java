@@ -8,19 +8,33 @@ import java.sql.SQLException;
 import business.*;
 
 public class TransDAO {
-
-
 	//type = 0 : Transfer
 	//type = 1 : Deposit
 	//type = 2 : Withdraw
-	public boolean insert(Transaction trans,int type) {
-    Connection connection = DBHelper.GetConnection();
-    try {
+	//type = 3 : BalanceInquired
+	public static boolean insert(Transaction trans, TransactionType type) {
+	    Connection connection = DBHelper.GetConnection();
+	    try {
 	        PreparedStatement ps = connection.prepareStatement("INSERT INTO Transaction VALUES (NULL, ?, ?, ?,?,?,?)");
 	        ps.setDate(1, (Date) trans.getTransactionDate());
 	        ps.setInt(2, trans.getStatus().ordinal());
-	        //ps.setDouble(3,trans.getAmount());
-	        //ps.setString(4,trans.getAccount().getAccountId());
+	        ps.setInt(3,type.ordinal());
+	        
+	        if (type == TransactionType.TRANSFER) {
+	        	Transfer transfer = (Transfer)trans;
+	        	ps.setDouble(4, transfer.getAmount());
+	        	ps.setString(5,transfer.getReceiver().getAccountId());
+	        }
+	        
+	        if (type == TransactionType.DEPOSIT) {
+	        	Deposit deposit = (Deposit)trans;
+	        	ps.setDouble(4, deposit.getAmount());
+	        }
+	        
+	        if (type == TransactionType.WITHDRAW) {
+	        	Withdrawal withdrawal = (Withdrawal)trans;
+	        	ps.setDouble(4, withdrawal.getAmount());
+	        }
 	
 	        int i = ps.executeUpdate();
 	        if(i == 1) {

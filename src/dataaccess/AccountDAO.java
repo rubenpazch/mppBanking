@@ -48,28 +48,23 @@ public class AccountDAO {
 	    return acount;
 	}
 
-	//type = 0 : Saving
-	//type = 1 : Checking
-	//type = 2 : Flexible
 	public static boolean insert(Account account, Contact contact, AccountType accountType) {
-    Connection connection = DBHelper.GetConnection();
+		Connection connection = DBHelper.GetConnection();
 	    try {
-	    	int type = accountType.ordinal();
-	    	
-	        //PreparedStatement ps = connection.prepareStatement("INSERT INTO Account VALUES (?, ?, ?, ?,?,?)");
+	    	//PreparedStatement ps = connection.prepareStatement("INSERT INTO Account VALUES (?, ?, ?, ?,?,?)");
 	    	PreparedStatement ps = connection.prepareStatement("INSERT INTO Account VALUES (?, ?, ?, ?)");
 	        ps.setString(1, account.getAccountId());
 	        ps.setString(2, contact.getContactId());
-	        ps.setInt(3,type);
+	        ps.setInt(3, accountType.ordinal());
 	        
-	        if (account instanceof SavingAccount) {
-	        	if (addSavingAccountParameters(ps, (SavingAccount)account) == false)
-	        		return false;
+	        if (accountType == AccountType.SAVING) {
+	        	SavingAccount savingAccount = (SavingAccount)account;
+	        	ps.setDouble(4, savingAccount.getInterestRate());
 	        }
 	        
-	        if (account instanceof CheckingAccount) {
-	        	if (addCheckingAccountParameters(ps, (CheckingAccount)account) == false)
-	        		return false;
+	        if (accountType == AccountType.CHECKING) {
+	        	CheckingAccount checkingAccount = (CheckingAccount)account;
+	        	ps.setDouble(4, checkingAccount.getMonthlyFee());
 	        }
 	        
 	        int i = ps.executeUpdate();
@@ -80,27 +75,6 @@ public class AccountDAO {
 	        ex.printStackTrace();
 	    }
 	    return false;
-	}
-	
-	private static boolean addSavingAccountParameters(PreparedStatement ps, SavingAccount account) {
-		try {
-			ps.setDouble(4,account.getInterestRate());
-			return true;
-		}
-		 catch (SQLException ex) {
-	        ex.printStackTrace();
-	        return false;
-	    }
-	}
-	
-	private static boolean addCheckingAccountParameters(PreparedStatement ps, CheckingAccount account) {
-		try {
-			ps.setDouble(4,account.getMonthlyFee());
-			return true;
-		} catch (SQLException ex) {
-	        ex.printStackTrace();
-	        return false;
-	    }
 	}
 	
 	public boolean update(Account account)
