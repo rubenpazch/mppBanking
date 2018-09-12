@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import controller.LoginController;
 import controller.RegisterAccountController;
+import controller.RegisterCustomerController;
+import controller.RegisterTransactionController;
 import javafx.application.Application;
 
 
@@ -14,6 +16,8 @@ final public class RuleSetFactory {
 	static {
 		map.put(LoginController.class, new LoginRuleSet());
 		map.put(RegisterAccountController.class, new RegisterAccountRuleSet());
+		map.put(RegisterCustomerController.class, new RegisterCustomerRuleSet());
+		map.put(RegisterTransactionController.class, new RegisterTransactionRuleSet());
 	}
 	
 	

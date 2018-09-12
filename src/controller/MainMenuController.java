@@ -69,7 +69,7 @@ public class MainMenuController extends Application{
 		btnRegisterCustomer.setOnAction((event) -> {
 
 			try {
-				RegisterCustomerController customerController = new RegisterCustomerController();
+				RegisterCustomerController customerController = new RegisterCustomerController(user);
 				customerController.start(stage);
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -78,7 +78,7 @@ public class MainMenuController extends Application{
 
 		btnRegisterTransaction.setOnAction((event) -> {
 			try {
-				RegisterTransactionController transactionController = new RegisterTransactionController();
+				RegisterTransactionController transactionController = new RegisterTransactionController(user);
 				transactionController.start(stage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block

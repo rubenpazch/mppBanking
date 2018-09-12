@@ -17,9 +17,9 @@
 				<ComboBox fx:id="comboBoxType" layoutX="141.0" layoutY="113.0" prefHeight="21.0" prefWidth="200.0">
 					<items>
 						<FXCollections fx:factory="observableArrayList">
-							<String fx:value="Item 1" />
-							<String fx:value="Item 2" />
-							<String fx:value="Item 3" />
+							<String fx:value="SAVING" />
+							<String fx:value="CHECKING" />
+							<String fx:value="FLEXIBLE" />
 						</FXCollections>
 					</items>
 				</ComboBox>

@@ -18,9 +18,10 @@
         <ComboBox fx:id="ddlTypeTransaction" layoutX="161.0" layoutY="107.0" prefHeight="21.0" prefWidth="200.0">
           <items>
             <FXCollections fx:factory="observableArrayList">
-              <String fx:value="Item 1" />
-              <String fx:value="Item 2" />
-              <String fx:value="Item 3" />
+              <String fx:value="TRANSFER" />
+              <String fx:value="DEPOSIT" />
+              <String fx:value="WITHDRAW" />
+              <String fx:value="BALANCE INQUIRY" />
             </FXCollections>
           </items>
         </ComboBox>
