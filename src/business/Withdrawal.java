@@ -14,13 +14,9 @@ import java.util.Date;
 public class Withdrawal extends Transaction {
     private double amount;
     
-    Withdrawal(String transactionId, Account account, double amount, Date transactionDate, TransactionStatus status) {
-    	super(transactionId, account, transactionDate, status);
+    Withdrawal(Account account, double amount, Date transactionDate, TransactionStatus status) {
+    	super(account, transactionDate, status);
     	this.amount = amount;
-    }
-    
-    Withdrawal(String transactionId, Account account, double amount, Date transactionDate) {
-    	this(transactionId, account, amount, transactionDate, TransactionStatus.PENDING);
     }
     
     public double getAmount() {

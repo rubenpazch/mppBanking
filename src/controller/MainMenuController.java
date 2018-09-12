@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+import rulesets.RuleSet;
+import rulesets.RuleSetFactory;
 import business.Auth;
 import business.User;
 import util.Util;
@@ -24,27 +26,35 @@ public class MainMenuController extends Application{
 		Application.launch(MainMenuController.class, args);
 	}
 
-/*	public MainMenuController(User user) {
+	public MainMenuController(User user) {
 		this.user = user;
-	}*/
+	}
 
 	public void start(Stage stage) throws Exception {
 
 		this.primaryStage = stage;
 
 		Parent root = FXMLLoader.load(getClass().getResource("/ui/main.fxml"));
+		//FXMLLoader loader= new FXMLLoader(getClass().getResource("/ui/main.fxml"));
 		stage.setTitle("FXML");
 
-		Button btnRegisterCustomer = (Button) root.lookup("#btnRegisterCustomer");
 		Button btnRegisterTransaction = (Button) root.lookup("#btnRegisterTransaction");
 		Button btnRegisterAccount = (Button) root.lookup("#btnRegisterAccount");
+		Button btnRegisterCustomer = (Button) root.lookup("#btnRegisterCustomer");
 		Button btnSignOut = (Button) root.lookup("#btSignOut");
 
 		stage.setScene(new Scene(root));
 
-		//MainMenuController secondWindow = new MainMenuController();
-		//secondWindow.start(this.primaryStage);
+		btnRegisterAccount.setOnAction((event) -> {			
 
+			try {
+				RegisterAccountController register =  new RegisterAccountController(user);
+				register.start(stage);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
 		btnSignOut.setOnAction((event) -> {
 			try {
 				LoginController login = new LoginController();
@@ -53,32 +63,22 @@ public class MainMenuController extends Application{
 				e.printStackTrace();
 			}
 		});
+		
+		
 
 		btnRegisterCustomer.setOnAction((event) -> {
 
 			try {
-				CustomerController customerController = new CustomerController();
+				RegisterCustomerController customerController = new RegisterCustomerController(user);
 				customerController.start(stage);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		});
 
-
-
-		btnRegisterAccount.setOnAction((event) -> {
-			try {
-				AccountController accountController = new AccountController();
-				accountController.start(stage);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-
-
 		btnRegisterTransaction.setOnAction((event) -> {
 			try {
-				TransactionController transactionController = new TransactionController();
+				RegisterTransactionController transactionController = new RegisterTransactionController(user);
 				transactionController.start(stage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -88,6 +88,10 @@ public class MainMenuController extends Application{
 
 
 		stage.show();
+	}
+
+	 User getUser(User u) {
+		return user=u;
 	}
 
 

@@ -48,8 +48,9 @@ public class LoginController extends Application {
 				DataAccess db = new DataAccessFacade();
 				HashMap<String, User> users = db.readUserMap();
 				User user = users.get(getUserId().getText());
-				//MainMenuController secondWindow = new MainMenuController(user);
-				//secondWindow.start(this.primaryStage);
+			
+				MainMenuController secondWindow = new MainMenuController(user);
+				secondWindow.start(this.primaryStage);
 
 			} catch (RuleException e1) {
 				Util.showAlert(e1.getMessage(), "Error login", AlertType.ERROR);

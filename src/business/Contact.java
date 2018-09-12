@@ -1,6 +1,7 @@
 package business;
 
 import java.util.List;
+import java.util.ArrayList;
 
 public class Contact {
 	private String contactId;
@@ -17,6 +18,7 @@ public class Contact {
 		this.middleName = middleName;
 		this.lastName = lastName;
 		this.address = address;
+		this.accounts = new ArrayList<Account>();
 	}
 	
 	public String getContactId() {

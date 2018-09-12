@@ -12,8 +12,8 @@ package business;
 public class SavingAccount extends Account {
 	private double interestRate;
 
-	public SavingAccount (String accountId, Contact contact, double interestRate, double startBalance){
-		super(accountId, contact, startBalance);
+	public SavingAccount (Contact contact, double interestRate, double startBalance){
+		super(contact, startBalance);
 		this.interestRate = interestRate;
 	}
 	

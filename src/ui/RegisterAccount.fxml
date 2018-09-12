@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<<<<<<< HEAD
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <!-- TODO Add Nodes -->
   <children>
@@ -37,4 +38,40 @@
       </children>
     </Pane>
   </children>
+=======
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+	<!-- TODO Add Nodes -->
+	<children>
+		<Pane layoutX="0.0" layoutY="0.0" prefHeight="331.0" prefWidth="403.0">
+			<children>
+				<TextField fx:id="txtAccountNumber" layoutX="141.0" layoutY="80.0" prefWidth="200.0" text="123567125234234" />
+				<Label layoutX="36.0" layoutY="83.0" text="Account Number" />
+				<ComboBox fx:id="comboBoxType" layoutX="141.0" layoutY="113.0" prefHeight="21.0" prefWidth="200.0">
+					<items>
+						<FXCollections fx:factory="observableArrayList">
+							<String fx:value="SAVING" />
+							<String fx:value="CHECKING" />
+							<String fx:value="FLEXIBLE" />
+						</FXCollections>
+					</items>
+				</ComboBox>
+				<Label layoutX="36.0" layoutY="118.0" text="Type" />
+				<TextField fx:id="txtCustomer" disable="true" layoutX="141.0" layoutY="43.0" prefWidth="200.0" text="Jhon Smith" />
+				<Label layoutX="36.0" layoutY="46.0" text="Customer" />
+				<TextField fx:id="txtInitialAmount" layoutX="141.0" layoutY="144.0" prefWidth="200.0" text="" />
+				<Label layoutX="36.0" layoutY="147.0" text="Initial Amount" />
+				<TextField fx:id="txtInterestRate" layoutX="141.0" layoutY="178.0" prefWidth="200.0" text="" />
+				<Label layoutX="36.0" layoutY="181.0" text="Interest Rate (%)" />
+				<TextField fx:id="txtMonthlyFee" layoutX="141.0" layoutY="209.0" prefWidth="200.0" text="" />
+				<Label layoutX="36.0" layoutY="212.0" text="Monthly Fee" />
+			</children>
+   <children>
+   
+   			<Button fx:id="btnRegister" layoutX="138.0" layoutY="271.0" mnemonicParsing="false" text="Register" />
+   			<Button fx:id="btnBackMenu" layoutX="226.0" layoutY="271.0" mnemonicParsing="false" text="Back to Menu" />
+   </children>
+		</Pane>
+	</children>
+>>>>>>> branch 'master' of https://github.com/rubenpazch/mppBanking.git
 </AnchorPane>

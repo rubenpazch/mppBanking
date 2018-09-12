@@ -16,7 +16,7 @@ public class ContactDAO {
 			if(rs.next()) {
 				String firstName = rs.getString("FirstName");
 				String lastName = rs.getString("LastName");
-				String middleName = rs.getString("MiddleName");
+				String middleName = rs.getString("MidleName");
 				String address = rs.getString("Address");
 
 				contact = new Contact(contactId, firstName, middleName, lastName, address);

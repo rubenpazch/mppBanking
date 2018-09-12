@@ -14,13 +14,9 @@ import java.util.Date;
 public class Deposit extends Transaction {
     private double amount;
     
-    Deposit(String transactionId, Account account, double amount, Date transactionDate, TransactionStatus status) {
-    	super(transactionId, account, transactionDate, status);
+    Deposit(Account account, double amount, Date transactionDate, TransactionStatus status) {
+    	super(account, transactionDate, status);
     	this.amount = amount;
-    }
-    
-    Deposit(String transactionId, Account account, double amount, Date transactionDate) {
-    	this(transactionId, account, amount, transactionDate, TransactionStatus.PENDING);
     }
     
     public double getAmount() {

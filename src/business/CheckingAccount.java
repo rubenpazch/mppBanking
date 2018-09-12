@@ -12,8 +12,8 @@ package business;
 public class CheckingAccount  extends Account{
 	private double monthyFee;
 	
-	public CheckingAccount (String accountId, Contact contact, double monthlyFee, double startBalance){
-		super(accountId, contact, startBalance);
+	public CheckingAccount (Contact contact, double monthlyFee, double startBalance){
+		super(contact, startBalance);
 		this.monthyFee = monthlyFee;
 	}
 	

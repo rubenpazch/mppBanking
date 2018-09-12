@@ -15,14 +15,13 @@ import java.util.ArrayList;
 public abstract class Account {
 	private static final long serialVersionUID = 6110690276685962829L;
 	
-	private String accountId;
+	private long accountId;
     private double balance;
     
     private Contact contact;
     private List<Transaction> transactions;
     
-    Account(String accountId, Contact contact, double startBalance) {
-    	this.accountId = accountId;
+    Account(Contact contact, double startBalance) {
     	this.balance = startBalance;
     	this.transactions = new ArrayList<Transaction>();
     }
@@ -31,13 +30,20 @@ public abstract class Account {
         return serialVersionUID;
     }
 
-    public String getAccountId() {
+    public long getAccountId() {
 		return accountId;
 	}
+    public void setAccountId(long accountId) {
+    	this.accountId = accountId;
+    }
     
     public double getBalance() {
 		return balance;
 	}
+    
+    void setBalance(double newBalance) {
+    	balance = newBalance;
+    }
     
     public Contact getContact() {
     	return contact;

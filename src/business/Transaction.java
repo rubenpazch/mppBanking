@@ -12,25 +12,28 @@ import java.util.Date;
  * @author USER
  */
 public abstract class Transaction {
-	private String transactionId;
+	private long transactionId;
 	private Date transactionDate;
 	private TransactionStatus status;
 	
 	private Account account;
 	
-	Transaction(String transactionId, Account account, Date transactionDate, TransactionStatus status) {
-		this.transactionId = transactionId;
+	Transaction(Account account, Date transactionDate, TransactionStatus status) {
 		this.account = account;
 		this.transactionDate = transactionDate;
 		this.status = status;
 	}
 	
-	Transaction(String transactionId, Account account, Date transactionDate) {
-		this(transactionId, account, transactionDate, TransactionStatus.PENDING);
+	public Account getAccount() {
+		return account;
 	}
 	
-	public String getTransactionId() {
+	public long getTransactionId() {
 		return transactionId;
+	}
+	
+	public void setTransactionId(long transactionId) {
+		this.transactionId = transactionId;
 	}
 
 	public Date getTransactionDate() {
