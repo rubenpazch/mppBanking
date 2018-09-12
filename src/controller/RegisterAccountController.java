@@ -25,8 +25,7 @@ public class RegisterAccountController  extends Application{
 	private TextField txtInitialAmount;
 	private TextField txtInterestRate;
 	private TextField txtMonthlyFee;
-	private Button btnRegister;
-	private Button btnBackMenu;
+
 
 
 	public RegisterAccountController(User user) {
@@ -104,6 +103,10 @@ public class RegisterAccountController  extends Application{
 	}
 	public TextField getTxtMonthlyFee() {
 		return txtMonthlyFee;
+	}
+	
+	public ComboBox<String> getComboBoxType() {
+		return comboBoxType;
 	}
 	public static void main(String[] args) {
 		Application.launch(RegisterAccountController.class, args);
