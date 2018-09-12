@@ -9,19 +9,15 @@ public class AccountService {
 		this.contact = contact;
 	}
 	
-	private String generateAccountId() {
-		return "";
-	}
-	
-	public Account createSavingsAccount(double interestRate, double startBalance) {
-		Account account = new SavingAccount(generateAccountId(), contact, interestRate, startBalance);
+	public Account createSavingAccount(double interestRate, double startBalance) {
+		Account account = new SavingAccount(contact, interestRate, startBalance);
 		contact.addAccount(account);
 		AccountDAO.insert(account, contact, AccountType.SAVING);
 		return account;
 	}
 	
 	public Account createCheckingAccount(double monthlyFee, double startBalance) {
-		Account account = new CheckingAccount(generateAccountId(), contact, monthlyFee, startBalance);
+		Account account = new CheckingAccount(contact, monthlyFee, startBalance);
 		contact.addAccount(account);
 		AccountDAO.insert(account, contact, AccountType.CHECKING);
 		return account;

@@ -10,7 +10,7 @@ public class DBHelper {
 	      try {
 	         Class.forName("org.sqlite.JDBC");
 	         con = DriverManager.getConnection("jdbc:sqlite:"+OUTPUT_DIR);
-	         con.setAutoCommit(false);
+	         con.setAutoCommit(true);
 	         return con;
 	         
 	      } catch ( Exception e ) {

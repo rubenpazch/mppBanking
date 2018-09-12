@@ -14,13 +14,13 @@ import java.util.Date;
 public class BalanceInquired extends Transaction {
     private double balance;
     
-    BalanceInquired(String transactionId, Account account, Date transactionDate, TransactionStatus status) {
-    	super(transactionId, account, transactionDate, status);
+    BalanceInquired(Account account, Date transactionDate, TransactionStatus status) {
+    	super(account, transactionDate, status);
     	this.balance = account.getBalance();
     }
     
-    BalanceInquired(String transactionId, Account account, Date transactionDate) {
-    	this(transactionId, account, transactionDate, TransactionStatus.PENDING);
+    BalanceInquired(Account account, Date transactionDate) {
+    	this(account, transactionDate, TransactionStatus.PENDING);
     }
     
     public double getBalance() {
