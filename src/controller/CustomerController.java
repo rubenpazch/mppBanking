@@ -32,6 +32,7 @@ public class CustomerController extends Application{
 
 		btnSaveCustomer.setOnAction((event) -> {
 			try {
+
 				//MainMenuController mainMenuController = new MainMenuController();
 				//mainMenuController.start(primaryStage);
 			} catch (Exception e) {

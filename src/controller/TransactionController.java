@@ -18,6 +18,9 @@ public class TransactionController extends Application{
 
 		Button btnReturnMainRegisterTransaction = (Button) root.lookup("#btnReturnMainRegisterTransaction");
 
+
+
+
 		btnReturnMainRegisterTransaction.setOnAction((event) -> {
 			try {
 				MainMenuController mainMenuController = new MainMenuController();
