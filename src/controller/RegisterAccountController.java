@@ -18,7 +18,7 @@ import util.Util;
 public class RegisterAccountController  extends Application{
 
 	private User user;
-	private Stage primaryStage;
+//	private Stage primaryStage;
 	private TextField txtAccountNumber;
 	private ComboBox<String> comboBoxType;
 	private TextField txtCustomer;
@@ -37,7 +37,6 @@ public class RegisterAccountController  extends Application{
 	public void start(Stage stage) throws Exception {
 
 		// TODO Auto-generated method stub
-		this.primaryStage = stage;
 		Parent root = FXMLLoader.load(getClass().getResource("/ui/RegisterAccount.fxml"));
 
 		stage.setTitle("Register Account");
@@ -66,7 +65,7 @@ public class RegisterAccountController  extends Application{
 				//------------------------------------
 
 				MainMenuController mainMenuController = new MainMenuController(user);
-				mainMenuController.start(primaryStage);
+				mainMenuController.start(stage);
 
 
 			} catch (RuleException e1) {
@@ -74,20 +73,20 @@ public class RegisterAccountController  extends Application{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
+			}
 
 		});
-		stage.show();
+		//stage.show();
 
 		btnBackMenu.setOnAction((event) -> {
 
 			MainMenuController mainMenuController = new MainMenuController(user);
 			try {
-				mainMenuController.start(primaryStage);
+				mainMenuController.start(stage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}	
+			}
 		});
 		stage.show();
 	}
@@ -104,7 +103,7 @@ public class RegisterAccountController  extends Application{
 	public TextField getTxtMonthlyFee() {
 		return txtMonthlyFee;
 	}
-	
+
 	public ComboBox<String> getComboBoxType() {
 		return comboBoxType;
 	}
