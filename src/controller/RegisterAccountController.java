@@ -1,14 +1,18 @@
 package controller;
 
+import business.Account;
+import business.AccountService;
+import business.Contact;
 import business.User;
+import dataaccess.ContactDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import rulesets.RuleException;
 import rulesets.RuleSet;
@@ -20,8 +24,8 @@ public class RegisterAccountController  extends Application{
 	private User user;
 	private Stage primaryStage;
 	private TextField txtAccountNumber;
-	private ComboBox<String> comboBoxType;
-	private TextField txtCustomer;
+	private ComboBox<String> ddlTypeAccounts;
+	private TextField txtCustomerName;
 	private TextField txtInitialAmount;
 	private TextField txtInterestRate;
 	private TextField txtMonthlyFee;
@@ -44,19 +48,42 @@ public class RegisterAccountController  extends Application{
 		stage.setScene(new Scene(root));
 
 		txtAccountNumber = (TextField) root.lookup("#txtAccountNumber");
-		comboBoxType = (ComboBox<String>) root.lookup("#comboBoxType");
-		txtCustomer = (TextField) root.lookup("#txtCustomer");
+		ddlTypeAccounts = (ComboBox<String>) root.lookup("#ddlTypeAccounts");
+		txtCustomerName = (TextField) root.lookup("#txtCustomerName");
 		txtInitialAmount = (TextField) root.lookup("#txtInitialAmount");
 		txtInterestRate = (TextField) root.lookup("#txtInterestRate");
 		txtMonthlyFee = (TextField) root.lookup("#txtMonthlyFee");
-		Button btnRegister = (Button) root.lookup("#btnRegister");
-		Button btnBackMenu = (Button) root.lookup("#btnBackMenu");
+		Button btnSaveAccount = (Button) root.lookup("#btnSaveAccount");
+		Button btnReturnMainRegisterAccount = (Button) root.lookup("#btnReturnMainRegisterAccount");
 
-		txtCustomer.setText(user.getId());
+		//txtCustomer.setText(user.getId());
 
 
-		btnRegister.setOnAction((event) -> {
+		txtCustomerName.setText(user.getId());
+
+		ddlTypeAccounts.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+			if(newSelection.equals("SAVING")) {
+				txtInterestRate.setText("");
+	    		txtMonthlyFee.setText("0.00");
+	    		txtMonthlyFee.setEditable(false);
+	    		
+	    		txtInterestRate.setText("");
+	    		txtInterestRate.setEditable(true);
+	    	}
+			if(newSelection.equals("CHECKING")) {
+	    		txtInterestRate.setText("0.00");
+	    		txtInterestRate.setEditable(false);
+	    		
+	    		txtMonthlyFee.setText("");
+	    		txtMonthlyFee.setEditable(true);
+	    		
+	    	}
+		});
+
+		
+		btnSaveAccount.setOnAction((event) -> {
 			RuleSet rules = RuleSetFactory.getRuleSet(RegisterAccountController.this);
+			
 			try {
 				rules.applyRules(RegisterAccountController.this);
 
@@ -64,6 +91,22 @@ public class RegisterAccountController  extends Application{
 				//------------------------------------
 				//CONNECT WITH THE LOGIC OF BUSINESS/*
 				//------------------------------------
+				//Contact contact = ContactDAO.getContact(txtCustomer.getText());
+				Contact contact = ContactDAO.getContact("1");
+		    	
+		    	AccountService accountService = new AccountService(contact);
+		    	double startBalance = Double.parseDouble(txtInitialAmount.getText());
+		    	double monthlyFee = Double.parseDouble(txtMonthlyFee.getText());
+		    	double interestRate = Double.parseDouble(txtInterestRate.getText());
+		    	if(ddlTypeAccounts.getValue().equals("SAVING")) {
+			    	Account checkingAccount = accountService.createCheckingAccount(interestRate, startBalance);
+			    	//checkingAccount.setAccountId(Integer.parseInt(txtAccountNumber.getText()));
+		    	}
+		    	else if(ddlTypeAccounts.getValue().equals("CHECKING")){
+			    	Account checkingAccount = accountService.createSavingAccount(monthlyFee, startBalance);
+			    	//checkingAccount.setAccountId(Integer.parseInt(txtAccountNumber.getText()));
+		    	}
+
 
 				MainMenuController mainMenuController = new MainMenuController(user);
 				mainMenuController.start(primaryStage);
@@ -79,7 +122,7 @@ public class RegisterAccountController  extends Application{
 		});
 		stage.show();
 
-		btnBackMenu.setOnAction((event) -> {
+		btnReturnMainRegisterAccount.setOnAction((event) -> {
 
 			MainMenuController mainMenuController = new MainMenuController(user);
 			try {
@@ -92,8 +135,15 @@ public class RegisterAccountController  extends Application{
 		stage.show();
 	}
 
+
 	public TextField getTxtAccountNumber() {
 		return txtAccountNumber;
+	}
+	public ComboBox<String> getDdlTypeAccounts() {
+		return ddlTypeAccounts;
+	}
+	public TextField getTxtCustomerName() {
+		return txtCustomerName;
 	}
 	public TextField getTxtInitialAmount() {
 		return txtInitialAmount;
@@ -103,10 +153,6 @@ public class RegisterAccountController  extends Application{
 	}
 	public TextField getTxtMonthlyFee() {
 		return txtMonthlyFee;
-	}
-	
-	public ComboBox<String> getComboBoxType() {
-		return comboBoxType;
 	}
 	public static void main(String[] args) {
 		Application.launch(RegisterAccountController.class, args);
