@@ -1,6 +1,6 @@
 package business;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Transfer extends Transaction {
 	private double amount;

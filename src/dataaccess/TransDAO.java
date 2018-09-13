@@ -18,9 +18,10 @@ public class TransDAO {
 	public static boolean insert(Transaction trans, TransactionType type) {
 	    Connection connection = DBHelper.GetConnection();
 	    try {
-	        PreparedStatement ps = connection.prepareStatement("INSERT INTO Transaction VALUES (NULL,?,?,?,?,?,?)");
+	    	PreparedStatement ps = connection.prepareStatement("INSERT INTO Trans VALUES (NULL,?,?,?,?,?,?)");
+	    	//PreparedStatement ps = connection.prepareStatement("INSERT INTO Account VALUES (NULL,?,?,?,?,?)");
 	        ps.setLong(1, trans.getAccount().getAccountId());
-	        ps.setDate(2, (Date) trans.getTransactionDate());
+	        ps.setDate(2, trans.getTransactionDate());
 	        ps.setInt(3, trans.getStatus().ordinal());
 	        ps.setInt(4, type.ordinal());
 	        

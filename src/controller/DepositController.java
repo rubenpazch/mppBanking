@@ -16,15 +16,15 @@ import rulesets.RuleSet;
 import rulesets.RuleSetFactory;
 import util.Util;
 
-public class WithdrawController extends Application{
+public class DepositController extends Application{
 
 	private Stage primaryStage;
 	private TextField accoutID;
 	private TextField balance;
-	private TextField withdrawAmount;
+	private TextField depositAmount;
 	
 	public static void main(String[] args) {
-		Application.launch(WithdrawController.class, args);
+		Application.launch(DepositController.class, args);
 	}
 	
 	@Override
@@ -32,14 +32,14 @@ public class WithdrawController extends Application{
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 				this.primaryStage = stage;
-				Parent root = FXMLLoader.load(getClass().getResource("/ui/Withdraw.fxml"));
+				Parent root = FXMLLoader.load(getClass().getResource("/ui/Deposit.fxml"));
 
-				stage.setTitle("Withdraw");
+				stage.setTitle("Deposit");
 				stage.setScene(new Scene(root));
 
 				accoutID = (TextField) root.lookup("#txtAccout");
 				balance = (TextField) root.lookup("#txtBalance");
-				withdrawAmount = (TextField) root.lookup("#txtWithdrawAmount");
+				depositAmount = (TextField) root.lookup("#txtDepositAmount");
 				Label lblsmg = (Label) root.lookup("#lblsmg");
 				
 				Button button = (Button) root.lookup("#btnApply");
@@ -53,13 +53,13 @@ public class WithdrawController extends Application{
 				button.setOnAction((event) -> {
 				RuleSet rules = RuleSetFactory.getRuleSet(this);
 			   try {
-			         rules.applyRules(WithdrawController.this);
+			         rules.applyRules(DepositController.this);
 			         balance.setText(String.valueOf( acc.getBalance()));
 			         TransactionService transervive = new TransactionService(acc);
-			         transervive.createWithdrawal(getAmount(),TransactionStatus.COMPLETED);
+			         transervive.createDeposit(getAmount(),TransactionStatus.COMPLETED);
 			         
 	
-			         lblsmg.setText("Withdraw completed");
+			         lblsmg.setText("Deposit completed");
 					} catch (RuleException e1 ) {
 						// TODO Auto-generated catch block
 						Util.showAlert(e1.getMessage(), "Error login", AlertType.ERROR);
@@ -74,13 +74,13 @@ public class WithdrawController extends Application{
 	
 	public double getAmount()
 	{
-		if (withdrawAmount.getText()=="") return 0;
-		return Double.parseDouble( withdrawAmount.getText());
+		if (depositAmount.getText()=="") return 0;
+		return Double.parseDouble( depositAmount.getText());
 	}
 	
 	public double getRemainBalance()
 	{
-		return Double.parseDouble( balance.getText()) - Double.parseDouble( withdrawAmount.getText());
+		return Double.parseDouble( balance.getText()) - Double.parseDouble( depositAmount.getText());
 	}
 	
 }

@@ -3,8 +3,8 @@ import java.sql.*;;
 
 public class DBHelper {
 
-	//public static final String OUTPUT_DIR = System.getProperty("user.dir")+ "\\src\\dataaccess\\storage\\BANKING.db";
-	public static final String OUTPUT_DIR = "C:\\Users\\USER\\Documents\\programs\\db\\BANKING.db";
+	public static final String OUTPUT_DIR = System.getProperty("user.dir")+ "\\src\\dataaccess\\storage\\BANKING.db";
+	//public static final String OUTPUT_DIR = "C:\\Users\\USER\\Documents\\programs\\db\\BANKING.db";
 
 	public static Connection GetConnection() {
 		Connection con = null;

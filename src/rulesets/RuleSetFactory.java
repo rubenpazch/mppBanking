@@ -6,6 +6,8 @@ import controller.LoginController;
 import controller.RegisterAccountController;
 import controller.RegisterCustomerController;
 import controller.RegisterTransactionController;
+import controller.WithdrawController;
+import controller.DepositController;
 import javafx.application.Application;
 
 
@@ -18,6 +20,8 @@ final public class RuleSetFactory {
 		map.put(RegisterAccountController.class, new RegisterAccountRuleSet());
 		map.put(RegisterCustomerController.class, new RegisterCustomerRuleSet());
 		map.put(RegisterTransactionController.class, new RegisterTransactionRuleSet());
+		map.put(WithdrawController.class, new WithdrawRuleSet());
+		map.put(DepositController.class, new DepositRuleSet());
 	}
 	
 	

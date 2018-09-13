@@ -18,11 +18,13 @@ public class CustomerDAO {
 	public static boolean insert(Customer c) {
 		Connection connection = DBHelper.GetConnection();
 		try {
-			PreparedStatement ps = connection.prepareStatement("INSERT INTO Customer VALUES (NULL,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, c.getFirstName());
-			ps.setString(2, c.getMidleName());
-			ps.setString(3, c.getLastName());
-			ps.setString(4, c.getAddress());
+			//PreparedStatement ps = connection.prepareStatement("INSERT INTO Customer VALUES (NULL,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement ps = connection.prepareStatement("INSERT INTO Customer VALUES (?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+			ps.setLong(1, c.getCustomerId());
+			ps.setString(2, c.getFirstName());
+			ps.setString(3, c.getMidleName());
+			ps.setString(4, c.getLastName());
+			ps.setString(5, c.getAddress());
 
 			int i = ps.executeUpdate();
 			if(i == 1) {
