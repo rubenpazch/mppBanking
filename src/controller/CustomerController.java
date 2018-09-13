@@ -9,8 +9,15 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import business.Customer;
 import business.CustomerService;
+import business.User;
 
 public class CustomerController extends Application{
+
+	private User user;
+
+	public CustomerController(User user){
+		this.user=user;
+	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -25,7 +32,12 @@ public class CustomerController extends Application{
 		Button btnSaveCustomer = (Button) root.lookup("#btnSaveCustomer");
 
 
+
 		TextField txtId = (TextField) root.lookup("#txtId");;
+
+		CustomerService cstemp = new CustomerService();
+		txtId.setText(cstemp.getNextId());
+
 		TextField txtFirstName = (TextField) root.lookup("#txtFirstName");;
 		TextField txtMidleName = (TextField) root.lookup("#txtMidleName");;
 		TextField txtLastName = (TextField) root.lookup("#txtLastName");;
@@ -44,8 +56,8 @@ public class CustomerController extends Application{
 				CustomerService cs  = new CustomerService();
 				cs.createCustomer(c);
 
-				//MainMenuController mainMenuController = new MainMenuController();
-				//mainMenuController.start(primaryStage);
+				MainMenuController mainMenuController = new MainMenuController(user);
+				mainMenuController.start(primaryStage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -56,8 +68,8 @@ public class CustomerController extends Application{
 
 		btReturnMainRegisterCustomer.setOnAction((event) -> {
 			try {
-				//MainMenuController mainMenuController = new MainMenuController();
-				//mainMenuController.start(primaryStage);
+				MainMenuController mainMenuController = new MainMenuController(user);
+				mainMenuController.start(primaryStage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

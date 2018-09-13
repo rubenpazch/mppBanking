@@ -87,7 +87,7 @@ public class MainMenuController extends Application{
 				}
 
 				//RegisterCustomerController customerController = new RegisterCustomerController(user);
-				CustomerController customerController =new CustomerController();
+				CustomerController customerController =new CustomerController(user);
 				customerController.start(stage);
 			} catch (Exception e) {
 				e.printStackTrace();
