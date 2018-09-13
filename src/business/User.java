@@ -8,7 +8,6 @@
 package business;
 
 import java.io.Serializable;
-import business.RuleException;
 
 
 /**
@@ -21,13 +20,21 @@ public class User implements Serializable {
 
 	private String id;
 	private String password;
-	private Auth authorization;
+	//private Auth authorization;
+	private UserType userType;
 
-	public User(String id, String pass, Auth  auth) {
+	public User(String id, String pass, UserType  auth) {
 		this.id = id;
 		this.password = pass;
-		this.authorization = auth;
+		this.userType = auth;
 	}
+	public User(String id, String pass) {
+		this.id = id;
+		this.password = pass;
+	}
+
+
+	public User(){}
 
 	public String getId() {
 		return id;
@@ -35,12 +42,35 @@ public class User implements Serializable {
 	public String getPassword() {
 		return password;
 	}
-	public Auth getAuthorization() {
-		return authorization;
+	public void setId(String id){
+		this.id = id;
+	}
+	public void setPass(String pass){
+		this.password = pass;
+	}
+	public void setUserType(int usertype){
+
+		if(usertype==0){
+			this.userType = UserType.BANK_EMPLOYEE;
+		}else{
+			this.userType =UserType.USER;
+		}
+	}
+
+	public UserType getAuthorization() {
+		return userType;
+	}
+	public String getRole(){
+
+		if(this.userType==UserType.BANK_EMPLOYEE){
+			return "Employee";
+		}else{
+			return "Customer";
+		}
 	}
 	@Override
 	public String toString() {
-		return "[" + id + ":" + password + ", " + authorization.toString() + "]";
+		return "[" + id + ":" + password + ", " + userType.toString() + "]";
 	}
 
 	//new methods

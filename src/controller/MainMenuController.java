@@ -9,12 +9,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import rulesets.RuleSet;
 import rulesets.RuleSetFactory;
+
 import business.Auth;
 import business.User;
+import business.UserType;
 import util.Util;
 
 public class MainMenuController extends Application{
@@ -38,6 +41,9 @@ public class MainMenuController extends Application{
 		//FXMLLoader loader= new FXMLLoader(getClass().getResource("/ui/main.fxml"));
 		stage.setTitle("FXML");
 
+		Label lblRole = (Label)root.lookup("#lblRole");
+		lblRole.setText(this.user.getRole());
+
 		Button btnRegisterTransaction = (Button) root.lookup("#btnRegisterTransaction");
 		Button btnRegisterAccount = (Button) root.lookup("#btnRegisterAccount");
 		Button btnRegisterCustomer = (Button) root.lookup("#btnRegisterCustomer");
@@ -45,9 +51,14 @@ public class MainMenuController extends Application{
 
 		stage.setScene(new Scene(root));
 
-		btnRegisterAccount.setOnAction((event) -> {			
+		btnRegisterAccount.setOnAction((event) -> {
 
 			try {
+				if (user.getAuthorization().equals(UserType.USER)) {
+					Util.showAlert("Customer can not register account", "Permission denied", AlertType.ERROR);
+					return;
+				}
+
 				RegisterAccountController register =  new RegisterAccountController(user);
 				register.start(stage);
 			} catch (Exception e) {
@@ -63,12 +74,18 @@ public class MainMenuController extends Application{
 				e.printStackTrace();
 			}
 		});
-		
-		
+
+
 
 		btnRegisterCustomer.setOnAction((event) -> {
 
 			try {
+
+				if (user.getAuthorization().equals(UserType.USER)) {
+					Util.showAlert("Customer can not register customer", "Permission denied", AlertType.ERROR);
+					return;
+				}
+
 				RegisterCustomerController customerController = new RegisterCustomerController(user);
 				customerController.start(stage);
 			} catch (Exception e) {
@@ -78,6 +95,8 @@ public class MainMenuController extends Application{
 
 		btnRegisterTransaction.setOnAction((event) -> {
 			try {
+
+
 				RegisterTransactionController transactionController = new RegisterTransactionController(user);
 				transactionController.start(stage);
 			} catch (Exception e) {

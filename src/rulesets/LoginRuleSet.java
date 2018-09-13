@@ -3,7 +3,9 @@ package rulesets;
 import java.util.HashMap;
 
 import business.User;
+import business.UserService;
 import controller.LoginController;
+import controller.MainMenuController;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
 import javafx.application.Application;
@@ -18,7 +20,7 @@ public class LoginRuleSet implements RuleSet {
 		login = (LoginController) ap;
 		isEmptyFieldsRule();
 	//	isPasswordNumericRule();
-		authenticationUserRule();
+		//authenticationUserRule();
 
 	}
 
@@ -30,16 +32,23 @@ public class LoginRuleSet implements RuleSet {
 		}
 	}
 
-	private void authenticationUserRule() throws RuleException {
+/*	private void authenticationUserRule() throws RuleException {
 		// TODO Auto-generated method stub
-		DataAccess db = new DataAccessFacade();
-		HashMap<String, User> users = db.readUserMap();
-		User user = users.get(login.getUserId().getText());
+		//DataAccess db = new DataAccessFacade();
+		//HashMap<String, User> users = db.readUserMap();
+		//User user = users.get(login.getUserId().getText());
+
+
+		UserService userService = new UserService();
+		User user = new User ( login.getUserId().getText(),login.getPassword().getText());
+		User result = userService.getUser(user);
 
 		if(user==null || !user.authenticate(login.getUserId().getText(), login.getPassword().getText())) {
 			throw new RuleException("User id or password Wrong");
 		}
-	}	
+	}*/
+
+
 	/*private void isPasswordNumericRule() throws RuleException {
 		char[] range_array = login.getPassword().getText().trim().toCharArray();
 		for (int i = 0; i < range_array.length; i++) {

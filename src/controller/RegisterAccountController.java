@@ -22,7 +22,7 @@ import util.Util;
 public class RegisterAccountController  extends Application{
 
 	private User user;
-	private Stage primaryStage;
+//	private Stage primaryStage;
 	private TextField txtAccountNumber;
 	private ComboBox<String> ddlTypeAccounts;
 	private TextField txtCustomerName;
@@ -41,7 +41,6 @@ public class RegisterAccountController  extends Application{
 	public void start(Stage stage) throws Exception {
 
 		// TODO Auto-generated method stub
-		this.primaryStage = stage;
 		Parent root = FXMLLoader.load(getClass().getResource("/ui/RegisterAccount.fxml"));
 
 		stage.setTitle("Register Account");
@@ -91,9 +90,8 @@ public class RegisterAccountController  extends Application{
 				//------------------------------------
 				//CONNECT WITH THE LOGIC OF BUSINESS/*
 				//------------------------------------
-				//Contact contact = ContactDAO.getContact(txtCustomer.getText());
-				Contact contact = ContactDAO.getContact("1");
-		    	
+				
+				Contact contact = ContactDAO.getContact(txtAccountNumber.getText());
 		    	AccountService accountService = new AccountService(contact);
 		    	double startBalance = Double.parseDouble(txtInitialAmount.getText());
 		    	double monthlyFee = Double.parseDouble(txtMonthlyFee.getText());
@@ -109,7 +107,7 @@ public class RegisterAccountController  extends Application{
 
 
 				MainMenuController mainMenuController = new MainMenuController(user);
-				mainMenuController.start(primaryStage);
+				mainMenuController.start(stage);
 
 
 			} catch (RuleException e1) {
@@ -117,20 +115,20 @@ public class RegisterAccountController  extends Application{
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			} 
+			}
 
 		});
-		stage.show();
+		//stage.show();
 
 		btnReturnMainRegisterAccount.setOnAction((event) -> {
 
 			MainMenuController mainMenuController = new MainMenuController(user);
 			try {
-				mainMenuController.start(primaryStage);
+				mainMenuController.start(stage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}	
+			}
 		});
 		stage.show();
 	}
@@ -154,6 +152,7 @@ public class RegisterAccountController  extends Application{
 	public TextField getTxtMonthlyFee() {
 		return txtMonthlyFee;
 	}
+
 	public static void main(String[] args) {
 		Application.launch(RegisterAccountController.class, args);
 	}
