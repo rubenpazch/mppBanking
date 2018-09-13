@@ -108,4 +108,31 @@ public class AccountDAO {
 	    }
 	    return false;
 	}
+	
+	public static Account GetAccount(String CustomerID,int type)
+	{
+		Connection connection = DBHelper.GetConnection();
+	    try {
+	    	Contact contact = ContactDAO.getContact(CustomerID);
+	    	
+	        Statement stmt = connection.createStatement();
+	        ResultSet rs = stmt.executeQuery("SELECT * FROM Account where CustomerID="+CustomerID +" and AccountType=" +type );
+	        
+	        Account account = null;
+	        if(rs.next())
+	        {
+	        	account = extractAccountFromResultSet(contact, rs);
+	          
+	        }
+	        
+	          rs.close();
+		      stmt.close();
+		      connection.close();
+	          return account;
+	         
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    }
+	    return null;
+	}
 }

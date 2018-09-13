@@ -19,9 +19,6 @@ public class AccountController  extends Application{
 
 		Button btnReturnMainRegisterAccount = (Button) root.lookup("#btnReturnMainRegisterAccount");
 
-
-
-
 		btnReturnMainRegisterAccount.setOnAction((event) -> {
 			try {
 				//MainMenuController mainMenuController = new MainMenuController();
