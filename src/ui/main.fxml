@@ -4,14 +4,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
 
 <Pane prefHeight="431.0" prefWidth="469.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
   <children>
     <Button fx:id="btnRegisterTransaction" layoutX="24.0" layoutY="118.0" mnemonicParsing="false" prefWidth="132.0" text="Register Transaction" />
     <Button fx:id="btnRegisterAccount" layoutX="24.0" layoutY="151.0" mnemonicParsing="false" prefWidth="132.0" text="Register Account" />
     <Button fx:id="btnRegisterCustomer" layoutX="24.0" layoutY="82.0" mnemonicParsing="false" prefWidth="132.0" text="Register Customer" />
-
-    
     <Button fx:id="btSignOut" layoutX="301.0" layoutY="82.0" mnemonicParsing="false" prefWidth="132.0" text="Singout" textFill="RED" />
+    <Label layoutX="33.0" layoutY="26.0" text="Role:">
+      <font>
+        <Font size="15.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Label fx:id="lblRole" font="$x1" layoutX="82.0" layoutY="26.0" text="" />
   </children>
 </Pane>

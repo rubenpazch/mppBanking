@@ -2,6 +2,7 @@ package controller;
 
 import java.util.HashMap;
 
+import business.UserService;
 import business.User;
 import dataaccess.DataAccess;
 import dataaccess.DataAccessFacade;
@@ -41,16 +42,27 @@ public class LoginController extends Application {
 
 		Button button = (Button) root.lookup("#btLogin");
 
-		button.setOnAction((event) -> {
-			RuleSet rules = RuleSetFactory.getRuleSet(LoginController.this);
-			try {
-				rules.applyRules(LoginController.this);
-				DataAccess db = new DataAccessFacade();
-				HashMap<String, User> users = db.readUserMap();
-				User user = users.get(getUserId().getText());
 
-				MainMenuController secondWindow = new MainMenuController(user);
-				secondWindow.start(this.primaryStage);
+
+		button.setOnAction((event) -> {
+
+			try {
+
+				RuleSet rules = RuleSetFactory.getRuleSet(LoginController.this);
+				rules.applyRules(LoginController.this);
+
+				UserService userService = new UserService();
+				User user = new User ( userId.getText(),password.getText());
+				User result = userService.getUser(user);
+
+				if(user.authenticate(result.getId(), result.getPassword())){
+					MainMenuController secondWindow = new MainMenuController(result);
+					secondWindow.start(this.primaryStage);
+				}
+				else
+				{
+					Util.showAlert("User or password incorrect","Error login", AlertType.ERROR);
+				}
 
 			} catch (RuleException e1) {
 				Util.showAlert(e1.getMessage(), "Error login", AlertType.ERROR);
