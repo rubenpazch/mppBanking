@@ -23,8 +23,8 @@ public class TransactionController extends Application{
 
 		btnReturnMainRegisterTransaction.setOnAction((event) -> {
 			try {
-				MainMenuController mainMenuController = new MainMenuController();
-				mainMenuController.start(primaryStage);
+				//MainMenuController mainMenuController = new MainMenuController();
+				//mainMenuController.start(primaryStage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -41,7 +41,7 @@ public class LoginController extends Application {
 
 		Button button = (Button) root.lookup("#btLogin");
 
-		/*button.setOnAction((event) -> {
+		button.setOnAction((event) -> {
 			RuleSet rules = RuleSetFactory.getRuleSet(LoginController.this);
 			try {
 				rules.applyRules(LoginController.this);
@@ -62,7 +62,7 @@ public class LoginController extends Application {
 
 		});
 
-		*/
+
 		stage.show();
 	}
 
