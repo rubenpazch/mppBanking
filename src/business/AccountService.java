@@ -22,4 +22,9 @@ public class AccountService {
 		AccountDAO.insert(account, contact, AccountType.CHECKING);
 		return account;
 	}
+	
+	public Account getAccount(int accountType) {
+		
+		return AccountDAO.GetAccount(contact.getContactId(), accountType);
+	}
 }
