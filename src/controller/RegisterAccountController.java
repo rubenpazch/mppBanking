@@ -54,10 +54,6 @@ public class RegisterAccountController  extends Application{
 		txtMonthlyFee = (TextField) root.lookup("#txtMonthlyFee");
 		Button btnSaveAccount = (Button) root.lookup("#btnSaveAccount");
 		Button btnReturnMainRegisterAccount = (Button) root.lookup("#btnReturnMainRegisterAccount");
-
-		//txtCustomer.setText(user.getId());
-
-
 		txtCustomerName.setText(user.getId());
 
 		ddlTypeAccounts.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
