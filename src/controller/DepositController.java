@@ -29,58 +29,54 @@ public class DepositController extends Application{
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-				this.primaryStage = stage;
-				Parent root = FXMLLoader.load(getClass().getResource("/ui/Deposit.fxml"));
+		this.primaryStage = stage;
+		Parent root = FXMLLoader.load(getClass().getResource("/ui/Deposit.fxml"));
 
-				stage.setTitle("Deposit");
-				stage.setScene(new Scene(root));
+		stage.setTitle("Deposit");
+		stage.setScene(new Scene(root));
 
-				accoutID = (TextField) root.lookup("#txtAccout");
-				balance = (TextField) root.lookup("#txtBalance");
-				depositAmount = (TextField) root.lookup("#txtDepositAmount");
+		accoutID = (TextField) root.lookup("#txtAccout");
+		balance = (TextField) root.lookup("#txtBalance");
+		depositAmount = (TextField) root.lookup("#txtDepositAmount");
+		
+		Button button = (Button) root.lookup("#btnApply");
+		Contact c =  ContactDAO.getContact(1); // pass customer login to here
+		AccountService aservice = new AccountService(c);
+		Account acc = aservice.getAccount(2);
+		
+		accoutID.setText(String.format("%d", acc.getAccountId()));
+		balance.setText(String.valueOf( acc.getBalance()));
+		
+		button.setOnAction((event) -> {
+			RuleSet rules = RuleSetFactory.getRuleSet(this);
+			try {
+				rules.applyRules(DepositController.this);
+
+				TransactionService transervive = new TransactionService(acc);
+				transervive.createDeposit(getAmount(),TransactionStatus.COMPLETED);
+				
+				balance.setText(String.valueOf(acc.getBalance()));
+				 
 				Label lblsmg = (Label) root.lookup("#lblsmg");
-				
-				Button button = (Button) root.lookup("#btnApply");
-				Contact c =  ContactDAO.getContact("1"); // pass customer login to here
-				AccountService aservice = new AccountService(c);
-				Account acc = aservice.getAccount(2);
-				
-				accoutID.setText(String.format("%d", acc.getAccountId()));
-				balance.setText(String.valueOf( acc.getBalance()));
-				
-				button.setOnAction((event) -> {
-				RuleSet rules = RuleSetFactory.getRuleSet(this);
-			   try {
-			         rules.applyRules(DepositController.this);
-			         balance.setText(String.valueOf( acc.getBalance()));
-			         TransactionService transervive = new TransactionService(acc);
-			         transervive.createDeposit(getAmount(),TransactionStatus.COMPLETED);
-			         
-	
-			         lblsmg.setText("Deposit completed");
-					} catch (RuleException e1 ) {
-						// TODO Auto-generated catch block
-						Util.showAlert(e1.getMessage(), "Error login", AlertType.ERROR);
-					}catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			});
-				stage.show();
+				lblsmg.setText("Deposit completed");
+				lblsmg.setVisible(true);
+			} catch (RuleException e1 ) {
+				Util.showAlert(e1.getMessage(), "Error login", AlertType.ERROR);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		
+		stage.show();
 	}
 
 	
-	public double getAmount()
-	{
+	public double getAmount() {
 		if (depositAmount.getText()=="") return 0;
-		return Double.parseDouble( depositAmount.getText());
+		return Double.parseDouble(depositAmount.getText());
 	}
 	
-	public double getRemainBalance()
-	{
-		return Double.parseDouble( balance.getText()) - Double.parseDouble( depositAmount.getText());
+	public double getRemainBalance() {
+		return Double.parseDouble(balance.getText()) - Double.parseDouble(depositAmount.getText());
 	}
-	
 }

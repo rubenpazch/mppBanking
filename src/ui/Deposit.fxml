@@ -9,18 +9,18 @@
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <!-- TODO Add Nodes -->
   <children>
-    <Pane layoutX="14.0" prefHeight="221.0" prefWidth="403.0">
+    <Pane layoutX="14.0" prefHeight="221.0" prefWidth="403.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
         <TextField fx:id="txtBalance" disable="true" layoutX="141.0" layoutY="80.0" prefWidth="200.0" promptText="1000" />
         <Label layoutX="36.0" layoutY="84.0" text="Balance" />
         <TextField fx:id="txtAccout" disable="true" layoutX="141.0" layoutY="48.0" prefWidth="200.0" promptText="ac" />
-        <Label  layoutX="36.0" layoutY="48.0" text="Checking Account" />
+        <Label layoutX="36.0" layoutY="48.0" text="Checking Account" />
         <TextField fx:id="txtDepositAmount" layoutX="141.0" layoutY="113.0" prefWidth="200.0" promptText="20" text="" />
-        <Label  layoutX="36.0" layoutY="117.0" text="Deposit Amount" />
+        <Label layoutX="36.0" layoutY="117.0" text="Deposit Amount" />
         <Button fx:id="btnApply" layoutX="141.0" layoutY="166.0" mnemonicParsing="false" text="Apply" />
         <Button fx:id="btnReturnMain" layoutX="195.0" layoutY="166.0" mnemonicParsing="false" text="Back Main" />
         <Label layoutX="141.0" layoutY="14.0" text="DEPOSIT" />
-            <Label fx:id="lblsmg" layoutX="141.0" layoutY="138.0" text="msg" textFill="#e41010" />
+            <Label fx:id="lblsmg" layoutX="141.0" layoutY="138.0" text="msg" textFill="#e41010" visible="false" />
       </children>
     </Pane>
   </children>

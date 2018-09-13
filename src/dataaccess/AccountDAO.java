@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class AccountDAO {
 
-	public static List<Account> GetAccountList(String CustomerID)
+	public static List<Account> GetAccountList(int CustomerID)
 	{
 	    Connection connection = DBHelper.GetConnection();
 	    try {
@@ -52,11 +52,11 @@ public class AccountDAO {
 	    return account;
 	}
 
-	public static boolean insert(Account account, Contact contact, AccountType accountType) {
+	public static boolean insert(Account account, AccountType accountType) {
 		Connection connection = DBHelper.GetConnection();
 	    try {
 	    	PreparedStatement ps = connection.prepareStatement("INSERT INTO Account VALUES (NULL,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
-	        ps.setString(1, contact.getContactId());
+	        ps.setInt(1, account.getContact().getContactId());
 	        ps.setInt(2, accountType.ordinal());
 	        ps.setDouble(3, account.getBalance());
 	        
@@ -109,7 +109,7 @@ public class AccountDAO {
 	    return false;
 	}
 	
-	public static Account GetAccount(String CustomerID,int type)
+	public static Account GetAccount(int CustomerID,int type)
 	{
 		Connection connection = DBHelper.GetConnection();
 	    try {

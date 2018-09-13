@@ -29,58 +29,54 @@ public class WithdrawController extends Application{
 	
 	@Override
 	public void start(Stage stage) throws Exception {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-				this.primaryStage = stage;
-				Parent root = FXMLLoader.load(getClass().getResource("/ui/Withdraw.fxml"));
+		this.primaryStage = stage;
+		Parent root = FXMLLoader.load(getClass().getResource("/ui/Withdraw.fxml"));
 
-				stage.setTitle("Withdraw");
-				stage.setScene(new Scene(root));
+		stage.setTitle("Withdraw");
+		stage.setScene(new Scene(root));
 
-				accoutID = (TextField) root.lookup("#txtAccout");
-				balance = (TextField) root.lookup("#txtBalance");
-				withdrawAmount = (TextField) root.lookup("#txtWithdrawAmount");
+		accoutID = (TextField) root.lookup("#txtAccout");
+		balance = (TextField) root.lookup("#txtBalance");
+		withdrawAmount = (TextField) root.lookup("#txtWithdrawAmount");
+		
+		Button button = (Button) root.lookup("#btnApply");
+		Contact c =  ContactDAO.getContact(1); // pass customer login to here
+		AccountService aservice = new AccountService(c);
+		Account acc = aservice.getAccount(2);
+		
+		accoutID.setText(String.format("%d", acc.getAccountId()));
+		balance.setText(String.valueOf( acc.getBalance()));
+		
+		button.setOnAction((event) -> {
+			RuleSet rules = RuleSetFactory.getRuleSet(this);
+			try {
+				rules.applyRules(WithdrawController.this);
+
+				TransactionService transervive = new TransactionService(acc);
+				transervive.createWithdrawal(getAmount(),TransactionStatus.COMPLETED);
+				
+				balance.setText(String.valueOf(acc.getBalance()));
+				 
 				Label lblsmg = (Label) root.lookup("#lblsmg");
-				
-				Button button = (Button) root.lookup("#btnApply");
-				Contact c =  ContactDAO.getContact("1"); // pass customer login to here
-				AccountService aservice = new AccountService(c);
-				Account acc = aservice.getAccount(2);
-				
-				accoutID.setText(String.format("%d", acc.getAccountId()));
-				balance.setText(String.valueOf( acc.getBalance()));
-				
-				button.setOnAction((event) -> {
-				RuleSet rules = RuleSetFactory.getRuleSet(this);
-			   try {
-			         rules.applyRules(WithdrawController.this);
-			         balance.setText(String.valueOf( acc.getBalance()));
-			         TransactionService transervive = new TransactionService(acc);
-			         transervive.createWithdrawal(getAmount(),TransactionStatus.COMPLETED);
-			         
-	
-			         lblsmg.setText("Withdraw completed");
-					} catch (RuleException e1 ) {
-						// TODO Auto-generated catch block
-						Util.showAlert(e1.getMessage(), "Error login", AlertType.ERROR);
-					}catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			});
-				stage.show();
+				lblsmg.setVisible(true);
+				lblsmg.setText("Withdraw completed");
+			} catch (RuleException e1 ) {
+				Util.showAlert(e1.getMessage(), "Error login", AlertType.ERROR);
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		
+		stage.show();
 	}
 
 	
-	public double getAmount()
-	{
+	public double getAmount() {
 		if (withdrawAmount.getText()=="") return 0;
-		return Double.parseDouble( withdrawAmount.getText());
+		return Double.parseDouble(withdrawAmount.getText());
 	}
 	
-	public double getRemainBalance()
-	{
-		return Double.parseDouble( balance.getText()) - Double.parseDouble( withdrawAmount.getText());
+	public double getRemainBalance() {
+		return Double.parseDouble(balance.getText()) - Double.parseDouble(withdrawAmount.getText());
 	}
-	
 }

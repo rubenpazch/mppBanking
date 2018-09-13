@@ -12,14 +12,15 @@ public class AccountService {
 	public Account createSavingAccount(double interestRate, double startBalance) {
 		Account account = new SavingAccount(contact, interestRate, startBalance);
 		contact.addAccount(account);
-		AccountDAO.insert(account, contact, AccountType.SAVING);
+		AccountDAO.insert(account, AccountType.SAVING);
+		
 		return account;
 	}
 	
 	public Account createCheckingAccount(double monthlyFee, double startBalance) {
 		Account account = new CheckingAccount(contact, monthlyFee, startBalance);
 		contact.addAccount(account);
-		AccountDAO.insert(account, contact, AccountType.CHECKING);
+		AccountDAO.insert(account, AccountType.CHECKING);
 		return account;
 	}
 	

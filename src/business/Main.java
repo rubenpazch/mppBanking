@@ -13,7 +13,7 @@ import dataaccess.ContactDAO;
 public class Main {
 
     public static void main(String[] args) {
-    	Contact contact = ContactDAO.getContact("1");
+    	Contact contact = ContactDAO.getContact(1);
     	
     	AccountService accountService = new AccountService(contact);
     	Account checkingAccount = accountService.createCheckingAccount(5, 100);

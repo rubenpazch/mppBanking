@@ -22,6 +22,7 @@ public abstract class Account {
     private List<Transaction> transactions;
     
     Account(Contact contact, double startBalance) {
+    	this.contact = contact;
     	this.balance = startBalance;
     	this.transactions = new ArrayList<Transaction>();
     }

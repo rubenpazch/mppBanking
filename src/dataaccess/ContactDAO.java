@@ -5,7 +5,7 @@ import java.util.*;
 import java.sql.*;
 
 public class ContactDAO {
-	public static Contact getContact(String contactId) {
+	public static Contact getContact(int contactId) {
 		Contact contact = null;
 		
 		try {

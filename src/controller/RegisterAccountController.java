@@ -22,7 +22,7 @@ import util.Util;
 public class RegisterAccountController  extends Application{
 
 	private User user;
-//	private Stage primaryStage;
+	private Stage primaryStage;
 	private TextField txtAccountNumber;
 	private ComboBox<String> ddlTypeAccounts;
 	private TextField txtCustomerName;
@@ -35,12 +35,11 @@ public class RegisterAccountController  extends Application{
 	public RegisterAccountController(User user) {
 		this.user=user;
 	}
-	@SuppressWarnings("unchecked")
+	
+	//@SuppressWarnings("unchecked")
 	@Override
-
 	public void start(Stage stage) throws Exception {
-
-		// TODO Auto-generated method stub
+		this.primaryStage = stage;
 		Parent root = FXMLLoader.load(getClass().getResource("/ui/RegisterAccount.fxml"));
 
 		stage.setTitle("Register Account");
@@ -87,18 +86,16 @@ public class RegisterAccountController  extends Application{
 				//CONNECT WITH THE LOGIC OF BUSINESS/*
 				//------------------------------------
 				
-				Contact contact = ContactDAO.getContact(txtAccountNumber.getText());
+				Contact contact = ContactDAO.getContact(Integer.parseInt(txtAccountNumber.getText()));
 		    	AccountService accountService = new AccountService(contact);
 		    	double startBalance = Double.parseDouble(txtInitialAmount.getText());
 		    	double monthlyFee = Double.parseDouble(txtMonthlyFee.getText());
 		    	double interestRate = Double.parseDouble(txtInterestRate.getText());
 		    	if(ddlTypeAccounts.getValue().equals("SAVING")) {
-			    	Account checkingAccount = accountService.createCheckingAccount(interestRate, startBalance);
-			    	//checkingAccount.setAccountId(Integer.parseInt(txtAccountNumber.getText()));
+			    	Account checkingAccount = accountService.createSavingAccount(interestRate, startBalance);
 		    	}
 		    	else if(ddlTypeAccounts.getValue().equals("CHECKING")){
-			    	Account checkingAccount = accountService.createSavingAccount(monthlyFee, startBalance);
-			    	//checkingAccount.setAccountId(Integer.parseInt(txtAccountNumber.getText()));
+			    	Account checkingAccount = accountService.createCheckingAccount(monthlyFee, startBalance);
 		    	}
 
 
