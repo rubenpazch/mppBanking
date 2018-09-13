@@ -19,7 +19,6 @@ public class UserDAO  {
 				newuser.setId( rs.getString("ID") );
 				newuser.setPass( rs.getString("PASSWORD"));
 				newuser.setUserType(rs.getInt("USERTYPE") );
-				return newuser;
 			}
 
 			rs.close();
