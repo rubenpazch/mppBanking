@@ -41,14 +41,14 @@ public class LoginController extends Application {
 
 		Button button = (Button) root.lookup("#btLogin");
 
-		button.setOnAction((event) -> {
+		/*button.setOnAction((event) -> {
 			RuleSet rules = RuleSetFactory.getRuleSet(LoginController.this);
 			try {
 				rules.applyRules(LoginController.this);
 				DataAccess db = new DataAccessFacade();
 				HashMap<String, User> users = db.readUserMap();
 				User user = users.get(getUserId().getText());
-			
+
 				MainMenuController secondWindow = new MainMenuController(user);
 				secondWindow.start(this.primaryStage);
 
@@ -61,6 +61,8 @@ public class LoginController extends Application {
 
 
 		});
+
+		*/
 		stage.show();
 	}
 
