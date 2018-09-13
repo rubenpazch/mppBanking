@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import business.Customer;
+import business.CustomerService;
 
 public class CustomerController extends Application{
 
@@ -32,6 +34,15 @@ public class CustomerController extends Application{
 
 		btnSaveCustomer.setOnAction((event) -> {
 			try {
+
+				Customer c = new Customer();
+				c.setFirstName(txtFirstName.getText());
+				c.setMidleName(txtMidleName.getText());
+				c.setLastName(txtLastName.getText());
+				c.setAddress(txtAddress.getText());
+
+				CustomerService cs  = new CustomerService();
+				cs.createCustomer(c);
 
 				//MainMenuController mainMenuController = new MainMenuController();
 				//mainMenuController.start(primaryStage);

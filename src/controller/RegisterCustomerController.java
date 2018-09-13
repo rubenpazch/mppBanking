@@ -1,5 +1,7 @@
 package controller;
 
+import business.Customer;
+import business.CustomerService;
 import business.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,12 +23,12 @@ public class RegisterCustomerController extends Application{
 	private TextField txtLastName;
 	private TextField txtAddress;
 	private User user;
-	
-	
+
+
 	public RegisterCustomerController(User user) {
 		this.user = user;
 	}
-	
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
@@ -55,6 +57,15 @@ public class RegisterCustomerController extends Application{
 				//------------------------------------
 				//CONNECT WITH THE LOGIC OF BUSINESS/*
 				//------------------------------------
+				Customer c = new Customer();
+				c.setFirstName(txtFirstName.getText());
+				c.setMidleName(txtMidleName.getText());
+				c.setLastName(txtLastName.getText());
+				c.setAddress(txtAddress.getText());
+
+				CustomerService cs  = new CustomerService();
+				cs.createCustomer(c);
+
 
 				MainMenuController mainMenuController = new MainMenuController(user);
 				mainMenuController.start(primaryStage);
