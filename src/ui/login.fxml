@@ -12,7 +12,7 @@
       <children>
         <Label text="Password" GridPane.columnIndex="0" GridPane.rowIndex="1" />
         <Label text="User" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-        <TextField fx:id="txtUser" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <PasswordField fx:id="txtUser" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
         <TextField fx:id="txtPwd" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       </children>
       <columnConstraints>
