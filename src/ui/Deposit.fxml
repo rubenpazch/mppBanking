@@ -5,6 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import java.net.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <!-- TODO Add Nodes -->
@@ -24,4 +25,7 @@
       </children>
     </Pane>
   </children>
+  <stylesheets>
+    <URL value="@Deposit.css" />
+  </stylesheets>
 </AnchorPane>
