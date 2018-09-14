@@ -18,9 +18,9 @@ public class RegisterAccountRuleSet implements RuleSet {
 
 	private void isEmptyFieldsRule() throws RuleException {
 		// TODO Auto-generated method stub
-		if(register.getTxtAccountNumber().getText()== null || register.getTxtInitialAmount().getText()==null  || 
+		if( register.getTxtInitialAmount().getText()==null  || 
 				register.getTxtInterestRate().getText()==null||register.getTxtMonthlyFee().getText()==null||
-				register.getTxtAccountNumber().getText().isEmpty() || register.getTxtInitialAmount().getText().isEmpty() || 
+				register.getTxtInitialAmount().getText().isEmpty() || 
 				register.getTxtInterestRate().getText().isEmpty()||register.getTxtMonthlyFee().getText().isEmpty() ||
 				register.getDdlTypeAccounts().getSelectionModel().isEmpty()) {
 			throw new RuleException("All fields must be filled");

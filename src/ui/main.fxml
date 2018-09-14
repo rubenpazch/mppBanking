@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 
-<Pane prefHeight="431.0" prefWidth="469.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<Pane prefHeight="431.0" prefWidth="469.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <Button fx:id="btnRegisterTransaction" layoutX="24.0" layoutY="118.0" mnemonicParsing="false" prefWidth="132.0" text="Register Transaction" />
-    <Button fx:id="btnRegisterAccount" layoutX="24.0" layoutY="151.0" mnemonicParsing="false" prefWidth="132.0" text="Register Account" />
-    <Button fx:id="btnRegisterCustomer" layoutX="24.0" layoutY="82.0" mnemonicParsing="false" prefWidth="132.0" text="Register Customer" />
+    <Button fx:id="btnRegisterAccount" layoutX="23.0" layoutY="179.0" mnemonicParsing="false" prefWidth="132.0" text="Register Account" />
+    <Button fx:id="btnDeposit" layoutX="23.0" layoutY="82.0" mnemonicParsing="false" prefWidth="132.0" text="Deposit" />
+    <Button fx:id="btnRegisterCustomer" layoutX="23.0" layoutY="146.0" mnemonicParsing="false" prefWidth="132.0" text="Register Customer" />
     <Button fx:id="btSignOut" layoutX="301.0" layoutY="82.0" mnemonicParsing="false" prefWidth="132.0" text="Singout" textFill="RED" />
     <Label layoutX="33.0" layoutY="26.0" text="Role:">
       <font>
@@ -18,5 +18,6 @@
       </font>
     </Label>
     <Label fx:id="lblRole" font="$x1" layoutX="82.0" layoutY="26.0" text="" />
+      <Button fx:id="btnWithdraw" layoutX="23.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="132.0" text="Withdraw" />
   </children>
 </Pane>

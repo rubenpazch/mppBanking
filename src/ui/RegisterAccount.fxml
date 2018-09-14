@@ -6,14 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <!-- TODO Add Nodes -->
   <children>
     <Pane layoutX="0.0" layoutY="0.0" prefHeight="331.0" prefWidth="403.0">
       <children>
-        <TextField fx:id="txtAccountNumber" layoutX="141.0" layoutY="80.0" prefWidth="200.0" text="123567125234234" />
-        <Label layoutX="36.0" layoutY="83.0" text="Account Number" />
         <ComboBox fx:id="ddlTypeAccounts" layoutX="141.0" layoutY="113.0" prefHeight="21.0" prefWidth="200.0" promptText="">
           <items>
             <FXCollections fx:factory="observableArrayList">
@@ -23,8 +20,8 @@
           </items>
         </ComboBox>
         <Label layoutX="36.0" layoutY="118.0" text="Type" />
-        <TextField fx:id="txtCustomerName" disable="true" layoutX="141.0" layoutY="48.0" prefWidth="200.0" text="Jhon Smith" />
-        <Label layoutX="36.0" layoutY="48.0" text="Customer" />
+        <TextField fx:id="txtCustomerName" disable="true" layoutX="141.0" layoutY="80.0" prefWidth="200.0" />
+        <Label layoutX="35.0" layoutY="84.0" text="Customer" />
         <TextField fx:id="txtInitialAmount" layoutX="141.0" layoutY="144.0" prefWidth="200.0" text="" />
         <Label layoutX="36.0" layoutY="147.0" text="Initial Amount" />
         <TextField fx:id="txtInterestRate" layoutX="141.0" layoutY="178.0" prefWidth="200.0" text="" />

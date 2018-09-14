@@ -44,23 +44,65 @@ public class MainMenuController extends Application{
 		Label lblRole = (Label)root.lookup("#lblRole");
 		lblRole.setText(this.user.getRole());
 
-		Button btnRegisterTransaction = (Button) root.lookup("#btnRegisterTransaction");
+		Button btnWithdraw = (Button) root.lookup("#btnWithdraw");
+		Button btnDeposit = (Button) root.lookup("#btnDeposit");
 		Button btnRegisterAccount = (Button) root.lookup("#btnRegisterAccount");
 		Button btnRegisterCustomer = (Button) root.lookup("#btnRegisterCustomer");
 		Button btnSignOut = (Button) root.lookup("#btSignOut");
 
 		stage.setScene(new Scene(root));
 
+		if (user.getAuthorization().equals(UserType.USER)) {
+			btnRegisterAccount.setVisible(false);
+			btnRegisterCustomer.setVisible(false);
+
+		}
+		if (user.getAuthorization().equals(UserType.BANK_EMPLOYEE)) {
+			btnDeposit.setVisible(false);
+			btnWithdraw.setVisible(false);
+
+		}
+
 		btnRegisterAccount.setOnAction((event) -> {
 
 			try {
-				if (user.getAuthorization().equals(UserType.USER)) {
-					Util.showAlert("Customer can not register account", "Permission denied", AlertType.ERROR);
-					return;
-				}
-
 				RegisterAccountController register =  new RegisterAccountController(user);
 				register.start(stage);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+
+		btnRegisterCustomer.setOnAction((event) -> {
+
+			try {
+
+				RegisterCustomerController customerController = new RegisterCustomerController(user);
+				//CustomerController customerController =new CustomerController(user);
+				customerController.start(stage);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		});
+		stage.show();
+		btnWithdraw.setOnAction((event) -> {
+			try {
+
+
+				WithdrawController transactionController = new WithdrawController(user);
+				transactionController.start(stage);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+		btnDeposit.setOnAction((event) -> {
+			try {
+
+
+				DepositController depositController = new DepositController(user);
+				depositController.start(stage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -74,38 +116,6 @@ public class MainMenuController extends Application{
 				e.printStackTrace();
 			}
 		});
-
-
-
-		btnRegisterCustomer.setOnAction((event) -> {
-
-			try {
-
-				if (user.getAuthorization().equals(UserType.USER)) {
-					Util.showAlert("Customer can not register customer", "Permission denied", AlertType.ERROR);
-					return;
-				}
-
-				//RegisterCustomerController customerController = new RegisterCustomerController(user);
-				CustomerController customerController =new CustomerController(user);
-				customerController.start(stage);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		});
-
-		btnRegisterTransaction.setOnAction((event) -> {
-			try {
-
-
-				RegisterTransactionController transactionController = new RegisterTransactionController(user);
-				transactionController.start(stage);
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		});
-
 
 		stage.show();
 	}

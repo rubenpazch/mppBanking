@@ -5,7 +5,10 @@ import java.util.*;
 import java.sql.*;
 
 public class ContactDAO {
+
+
 	public static Contact getContact(int contactId) {
+
 		Contact contact = null;
 		
 		try {
@@ -32,4 +35,39 @@ public class ContactDAO {
 			return null;
 		}		
 	}
+
+	public static List<Contact> GetContactList()
+	{
+	    Connection connection = DBHelper.GetConnection();
+	    try {
+	    	
+	    	
+	        Statement stmt = connection.createStatement();
+	        ResultSet rs = stmt.executeQuery("SELECT * FROM Customer");
+	        
+	        List<Contact> contacts = new ArrayList<Contact>();
+	        
+	        while(rs.next())
+	        {
+	        	int contactId = Integer.parseInt(rs.getString(0));
+	        	String firstName= rs.getString(1);
+	        	String middleName= rs.getString(2);
+	        	String lastName= rs.getString(3);
+	        	String address= rs.getString(4);
+
+	        	Contact contact = new Contact(contactId, firstName, middleName, lastName, address);
+	        	contacts.add(contact);
+	        }
+	        return contacts;
+	        
+	    } catch (SQLException ex) {
+	        ex.printStackTrace();
+	    }
+	    return null;
+	}
+	
+	
+	
+
+	
 }

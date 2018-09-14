@@ -18,15 +18,21 @@ import util.Util;
 
 public class WithdrawController extends Application{
 
+	private User user;
+
 	private Stage primaryStage;
 	private TextField accoutID;
 	private TextField balance;
 	private TextField withdrawAmount;
-	
-	public static void main(String[] args) {
+
+/*	public static void main(String[] args) {
 		Application.launch(WithdrawController.class, args);
+	}*/
+
+	WithdrawController (User user){
+		this.user=user;
 	}
-	
+
 	@Override
 	public void start(Stage stage) throws Exception {
 		this.primaryStage = stage;
@@ -38,15 +44,17 @@ public class WithdrawController extends Application{
 		accoutID = (TextField) root.lookup("#txtAccout");
 		balance = (TextField) root.lookup("#txtBalance");
 		withdrawAmount = (TextField) root.lookup("#txtWithdrawAmount");
-		
+
 		Button button = (Button) root.lookup("#btnApply");
+		Button btnReturnMainWithdraw = (Button) root.lookup("#btnReturnMain");
+
 		Contact c =  ContactDAO.getContact(1); // pass customer login to here
 		AccountService aservice = new AccountService(c);
 		Account acc = aservice.getAccount(2);
-		
-		accoutID.setText(String.format("%d", acc.getAccountId()));
-		balance.setText(String.valueOf( acc.getBalance()));
-		
+
+		//accoutID.setText(String.format("%d", acc.getAccountId()));
+		//balance.setText(String.valueOf( acc.getBalance()));
+
 		button.setOnAction((event) -> {
 			RuleSet rules = RuleSetFactory.getRuleSet(this);
 			try {
@@ -54,9 +62,9 @@ public class WithdrawController extends Application{
 
 				TransactionService transervive = new TransactionService(acc);
 				transervive.createWithdrawal(getAmount(),TransactionStatus.COMPLETED);
-				
+
 				balance.setText(String.valueOf(acc.getBalance()));
-				 
+
 				Label lblsmg = (Label) root.lookup("#lblsmg");
 				lblsmg.setVisible(true);
 				lblsmg.setText("Withdraw completed");
@@ -66,16 +74,29 @@ public class WithdrawController extends Application{
 				e.printStackTrace();
 			}
 		});
-		
+
+
+		btnReturnMainWithdraw.setOnAction((event) -> {
+			try {
+				MainMenuController mainMenuController = new MainMenuController(user);
+				mainMenuController.start(primaryStage);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+
+
+
 		stage.show();
 	}
 
-	
+
 	public double getAmount() {
 		if (withdrawAmount.getText()=="") return 0;
 		return Double.parseDouble(withdrawAmount.getText());
 	}
-	
+
 	public double getRemainBalance() {
 		return Double.parseDouble(balance.getText()) - Double.parseDouble(withdrawAmount.getText());
 	}

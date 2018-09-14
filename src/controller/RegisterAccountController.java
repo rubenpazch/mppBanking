@@ -86,7 +86,7 @@ public class RegisterAccountController  extends Application{
 				//CONNECT WITH THE LOGIC OF BUSINESS/*
 				//------------------------------------
 				
-				Contact contact = ContactDAO.getContact(Integer.parseInt(txtAccountNumber.getText()));
+				Contact contact = ContactDAO.getContact(Integer.parseInt(txtCustomerName.getText()));// SHOULD BE THE CUSTOMER'ID, NOT LIKE THAT
 		    	AccountService accountService = new AccountService(contact);
 		    	double startBalance = Double.parseDouble(txtInitialAmount.getText());
 		    	double monthlyFee = Double.parseDouble(txtMonthlyFee.getText());
