@@ -1,11 +1,16 @@
 package controller;
 
+import java.awt.List;
+import java.util.ArrayList;
+
 import business.Account;
 import business.AccountService;
 import business.Contact;
 import business.User;
 import dataaccess.ContactDAO;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,8 +27,9 @@ import util.Util;
 public class RegisterAccountController  extends Application{
 
 	private User user;
+	private int contactID;
 	private Stage primaryStage;
-	private TextField txtAccountNumber;
+	private ComboBox<Contact> listCustomer;
 	private ComboBox<String> ddlTypeAccounts;
 	private TextField txtCustomerName;
 	private TextField txtInitialAmount;
@@ -35,6 +41,9 @@ public class RegisterAccountController  extends Application{
 	public RegisterAccountController(User user) {
 		this.user=user;
 	}
+	public RegisterAccountController(int contact) {
+		this.contactID=contact;
+	}
 	
 	//@SuppressWarnings("unchecked")
 	@Override
@@ -45,15 +54,22 @@ public class RegisterAccountController  extends Application{
 		stage.setTitle("Register Account");
 		stage.setScene(new Scene(root));
 
-		txtAccountNumber = (TextField) root.lookup("#txtAccountNumber");
+		listCustomer = (ComboBox<Contact>) root.lookup("#listCustomer");
 		ddlTypeAccounts = (ComboBox<String>) root.lookup("#ddlTypeAccounts");
 		txtCustomerName = (TextField) root.lookup("#txtCustomerName");
 		txtInitialAmount = (TextField) root.lookup("#txtInitialAmount");
 		txtInterestRate = (TextField) root.lookup("#txtInterestRate");
 		txtMonthlyFee = (TextField) root.lookup("#txtMonthlyFee");
-		Button btnSaveAccount = (Button) root.lookup("#btnSaveAccount");
 		Button btnReturnMainRegisterAccount = (Button) root.lookup("#btnReturnMainRegisterAccount");
-		txtCustomerName.setText(user.getId());
+		Button btnSaveAccount = (Button) root.lookup("#btnSaveAccount");
+		Button btnSearch = (Button) root.lookup("#btnSearch");
+		
+	
+				
+		ObservableList<Contact> items = FXCollections.observableArrayList();
+		items.addAll(ContactDAO.GetContactList());
+		listCustomer.getItems().addAll(items);		
+		
 
 		ddlTypeAccounts.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
 			if(newSelection.equals("SAVING")) {
@@ -85,8 +101,8 @@ public class RegisterAccountController  extends Application{
 				//------------------------------------
 				//CONNECT WITH THE LOGIC OF BUSINESS/*
 				//------------------------------------
-				
-				Contact contact = ContactDAO.getContact(Integer.parseInt(txtCustomerName.getText()));// SHOULD BE THE CUSTOMER'ID, NOT LIKE THAT
+
+				Contact contact = ContactDAO.getContact(String.valueOf(listCustomer.getValue().getContactId()));// SHOULD BE THE CUSTOMER'ID, NOT LIKE THAT
 		    	AccountService accountService = new AccountService(contact);
 		    	double startBalance = Double.parseDouble(txtInitialAmount.getText());
 		    	double monthlyFee = Double.parseDouble(txtMonthlyFee.getText());
@@ -111,7 +127,9 @@ public class RegisterAccountController  extends Application{
 			}
 
 		});
-		//stage.show();
+
+		
+
 
 		btnReturnMainRegisterAccount.setOnAction((event) -> {
 
@@ -127,9 +145,6 @@ public class RegisterAccountController  extends Application{
 	}
 
 
-	public TextField getTxtAccountNumber() {
-		return txtAccountNumber;
-	}
 	public ComboBox<String> getDdlTypeAccounts() {
 		return ddlTypeAccounts;
 	}

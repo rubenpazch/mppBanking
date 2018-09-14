@@ -1,13 +1,17 @@
 package controller;
 
 import business.*;
+import dataaccess.AccountDAO;
 import dataaccess.ContactDAO;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
@@ -18,19 +22,23 @@ import util.Util;
 
 public class DepositController extends Application{
 
-	private User user;
 	private Stage primaryStage;
-	private TextField accoutID;
+	private ComboBox<Account> accoutID;
 	private TextField balance;
 	private TextField depositAmount;
-
-	/*public static void main(String[] args) {
+	private User user;
+	
+	public static void main(String[] args) {
 		Application.launch(DepositController.class, args);
-	}*/
-
-	DepositController(User user){
-		this.user=user;
 	}
+	
+	
+	public DepositController(User user) {
+		super();
+		this.user = user;
+	}
+
+
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -40,20 +48,27 @@ public class DepositController extends Application{
 		stage.setTitle("Deposit");
 		stage.setScene(new Scene(root));
 
-		accoutID = (TextField) root.lookup("#txtAccout");
+		accoutID =  (ComboBox<Account>) root.lookup("#txtAccout");
 		balance = (TextField) root.lookup("#txtBalance");
 		depositAmount = (TextField) root.lookup("#txtDepositAmount");
-
+		
 		Button button = (Button) root.lookup("#btnApply");
-		Button btnReturnMainDeposit = (Button) root.lookup("#btnReturnMain");
+		Button btnReturnMain = (Button) root.lookup("#btnReturnMain");
+		
+		ObservableList<Account> items = FXCollections.observableArrayList();
+		items.addAll(AccountDAO.GetAccountList(user.getId()));
+		accoutID.getItems().addAll(items);	
 
-		Contact c =  ContactDAO.getContact(1); // pass customer login to here
+		 
+		
+		Contact c =  ContactDAO.getContact(user.getId()); // pass customer login to here
 		AccountService aservice = new AccountService(c);
-		Account acc = aservice.getAccount(2);
-
+		Account acc = aservice.getAccount(1);
+		
 		//accoutID.setText(String.format("%d", acc.getAccountId()));
-		//balance.setText(String.valueOf( acc.getBalance()));
-
+		accoutID.setOnAction(e -> balance.setText(String.valueOf( acc.getBalance())));
+		
+		
 		button.setOnAction((event) -> {
 			RuleSet rules = RuleSetFactory.getRuleSet(this);
 			try {
@@ -61,9 +76,9 @@ public class DepositController extends Application{
 
 				TransactionService transervive = new TransactionService(acc);
 				transervive.createDeposit(getAmount(),TransactionStatus.COMPLETED);
-
+				
 				balance.setText(String.valueOf(acc.getBalance()));
-
+				 
 				Label lblsmg = (Label) root.lookup("#lblsmg");
 				lblsmg.setText("Deposit completed");
 				lblsmg.setVisible(true);
@@ -73,27 +88,27 @@ public class DepositController extends Application{
 				e.printStackTrace();
 			}
 		});
+		
+		btnReturnMain.setOnAction((event) -> {
 
-		btnReturnMainDeposit.setOnAction((event) -> {
+			MainMenuController mainMenuController = new MainMenuController(user);
 			try {
-				MainMenuController mainMenuController = new MainMenuController(user);
-				mainMenuController.start(primaryStage);
+				mainMenuController.start(stage);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		});
-
-
+		
 		stage.show();
 	}
 
-
+	
 	public double getAmount() {
 		if (depositAmount.getText()=="") return 0;
 		return Double.parseDouble(depositAmount.getText());
 	}
-
+	
 	public double getRemainBalance() {
 		return Double.parseDouble(balance.getText()) - Double.parseDouble(depositAmount.getText());
 	}

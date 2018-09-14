@@ -44,4 +44,11 @@ public class Contact {
 	void addAccount(Account account) {
 		accounts.add(account);
 	}
+
+	@Override
+	public String toString() {
+		return  contactId + " -" + firstName + " -" + lastName;
+	}
+	
+	
 }

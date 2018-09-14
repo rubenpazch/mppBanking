@@ -12,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import rulesets.RuleException;
@@ -26,7 +25,7 @@ public class LoginController extends Application {
 
 	private Stage primaryStage;
 	private TextField userId ;;
-	private PasswordField password;
+	private TextField password;
 
 	@Override
 	public void start(Stage stage) throws Exception {
@@ -39,7 +38,7 @@ public class LoginController extends Application {
 		stage.setScene(new Scene(root));
 
 		userId = (TextField) root.lookup("#txtUser");
-		password = (PasswordField) root.lookup("#txtPwd");
+		password = (TextField) root.lookup("#txtPwd");
 
 		Button button = (Button) root.lookup("#btLogin");
 

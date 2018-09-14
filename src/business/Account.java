@@ -26,7 +26,7 @@ public abstract class Account {
     	this.balance = startBalance;
     	this.transactions = new ArrayList<Transaction>();
     }
-
+ 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
@@ -58,5 +58,11 @@ public abstract class Account {
     	transactions.add(transaction);
     }
     
-    public abstract double computeUpdatedBalance();
+    
+    @Override
+	public String toString() {
+		return "Account " + accountId;
+	}
+
+	public abstract double computeUpdatedBalance();
 }

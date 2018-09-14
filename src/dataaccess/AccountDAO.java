@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class AccountDAO {
 
-	public static List<Account> GetAccountList(int CustomerID)
+	public static List<Account> GetAccountList(String CustomerID)
 	{
 	    Connection connection = DBHelper.GetConnection();
 	    try {
@@ -28,7 +28,7 @@ public class AccountDAO {
 	    }
 	    return null;
 	}
-	
+	 
 	public static Account extractAccountFromResultSet(Contact contact, ResultSet rs) throws SQLException {
 		int accoutType = rs.getInt("AccountType");
 		Account account=null;
@@ -109,7 +109,7 @@ public class AccountDAO {
 	    return false;
 	}
 	
-	public static Account GetAccount(int CustomerID,int type)
+	public static Account GetAccount(String CustomerID,int type)
 	{
 		Connection connection = DBHelper.GetConnection();
 	    try {

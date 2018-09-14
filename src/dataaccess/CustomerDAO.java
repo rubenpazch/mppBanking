@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.sun.xml.internal.ws.org.objectweb.asm.Type;
+
 
 import business.Account;
 import business.AccountType;
@@ -14,7 +14,6 @@ import business.CheckingAccount;
 import business.Contact;
 import business.Customer;
 import business.SavingAccount;
-import business.User;
 
 public class CustomerDAO {
 
@@ -50,37 +49,6 @@ public class CustomerDAO {
 
 		return false;
 	}
-
-
-	public static int GetNextId()
-	{
-		int result=0;
-		Connection con = DBHelper.GetConnection();
-		Statement stmt = null;
-
-		try {
-			stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery( "SELECT  customerId, firstName, midlename, lastname,address FROM CUSTOMER  order by customerid desc");
-
-			if(rs.next())
-			{
-				result= rs.getInt("customerId");
-
-			}
-
-			rs.close();
-			stmt.close();
-			con.close();
-			return result;
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		return 0;
-	}
-
 
 
 }

@@ -7,8 +7,7 @@ import java.sql.*;
 public class ContactDAO {
 
 
-	public static Contact getContact(int contactId) {
-
+	public static Contact getContact(String contactId) {
 		Contact contact = null;
 		
 		try {
@@ -22,7 +21,7 @@ public class ContactDAO {
 				String middleName = rs.getString("MidleName");
 				String address = rs.getString("Address");
 
-				contact = new Contact(contactId, firstName, middleName, lastName, address);
+				contact = new Contact(Integer.parseInt(contactId), firstName, middleName, lastName, address);
 			}
 			  
 			rs.close();
@@ -49,11 +48,11 @@ public class ContactDAO {
 	        
 	        while(rs.next())
 	        {
-	        	int contactId = Integer.parseInt(rs.getString(0));
-	        	String firstName= rs.getString(1);
-	        	String middleName= rs.getString(2);
-	        	String lastName= rs.getString(3);
-	        	String address= rs.getString(4);
+	        	int contactId = Integer.parseInt(rs.getString("CustomerID"));
+	        	String firstName = rs.getString("FirstName");
+				String lastName = rs.getString("LastName");
+				String middleName = rs.getString("MidleName");
+				String address = rs.getString("Address");
 
 	        	Contact contact = new Contact(contactId, firstName, middleName, lastName, address);
 	        	contacts.add(contact);

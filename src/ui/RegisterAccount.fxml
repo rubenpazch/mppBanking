@@ -20,7 +20,6 @@
           </items>
         </ComboBox>
         <Label layoutX="36.0" layoutY="118.0" text="Type" />
-        <TextField fx:id="txtCustomerName" disable="true" layoutX="141.0" layoutY="80.0" prefWidth="200.0" />
         <Label layoutX="35.0" layoutY="84.0" text="Customer" />
         <TextField fx:id="txtInitialAmount" layoutX="141.0" layoutY="144.0" prefWidth="200.0" text="" />
         <Label layoutX="36.0" layoutY="147.0" text="Initial Amount" />
@@ -31,6 +30,7 @@
         <Button fx:id="btnSaveAccount" layoutX="141.0" layoutY="256.0" mnemonicParsing="false" text="Save" />
         <Button fx:id="btnReturnMainRegisterAccount" layoutX="220.0" layoutY="256.0" mnemonicParsing="false" text="Back Main" />
         <Label layoutX="141.0" layoutY="14.0" text="REGISTER ACCOUNT" />
+            <ComboBox fx:id="listCustomer" layoutX="140.0" layoutY="80.0" prefHeight="25.0" prefWidth="200.0" />
       </children>
     </Pane>
   </children>

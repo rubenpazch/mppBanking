@@ -51,16 +51,16 @@ public class MainMenuController extends Application{
 		Button btnSignOut = (Button) root.lookup("#btSignOut");
 
 		stage.setScene(new Scene(root));
-
+		
 		if (user.getAuthorization().equals(UserType.USER)) {
 			btnRegisterAccount.setVisible(false);
 			btnRegisterCustomer.setVisible(false);
-
+			
 		}
 		if (user.getAuthorization().equals(UserType.BANK_EMPLOYEE)) {
 			btnDeposit.setVisible(false);
 			btnWithdraw.setVisible(false);
-
+			
 		}
 
 		btnRegisterAccount.setOnAction((event) -> {
@@ -73,13 +73,13 @@ public class MainMenuController extends Application{
 				e.printStackTrace();
 			}
 		});
-
+		
 		btnRegisterCustomer.setOnAction((event) -> {
 
 			try {
 
-				RegisterCustomerController customerController = new RegisterCustomerController(user);
-				//CustomerController customerController =new CustomerController(user);
+				//RegisterCustomerController customerController = new RegisterCustomerController(user);
+				CustomerController customerController =new CustomerController(user);
 				customerController.start(stage);
 			} catch (Exception e) {
 				e.printStackTrace();

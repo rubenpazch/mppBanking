@@ -1,5 +1,8 @@
 package controller;
 
+import business.Customer;
+import business.CustomerService;
+import business.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,17 +10,16 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import business.Customer;
-import business.CustomerService;
-import business.User;
 
 public class CustomerController extends Application{
+ private User user;
+ 
+ 
+	public CustomerController(User user) {
+	super();
+	this.user = user;
+}
 
-	private User user;
-
-	public CustomerController(User user){
-		this.user=user;
-	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -32,12 +34,7 @@ public class CustomerController extends Application{
 		Button btnSaveCustomer = (Button) root.lookup("#btnSaveCustomer");
 
 
-
 		TextField txtId = (TextField) root.lookup("#txtId");;
-
-		CustomerService cstemp = new CustomerService();
-		txtId.setText(cstemp.getNextId());
-
 		TextField txtFirstName = (TextField) root.lookup("#txtFirstName");;
 		TextField txtMidleName = (TextField) root.lookup("#txtMidleName");;
 		TextField txtLastName = (TextField) root.lookup("#txtLastName");;

@@ -26,6 +26,6 @@ public class AccountService {
 	
 	public Account getAccount(int accountType) {
 		
-		return AccountDAO.GetAccount(contact.getContactId(), accountType);
+		return AccountDAO.GetAccount(String.valueOf(contact.getContactId()), accountType);
 	}
 }
